@@ -1,0 +1,12 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "TKTK",
+      "lede": "TKTKT",
+      "authors": ["bob journalist", "bobette journalist"],
+      "created_at": "20211014-1313",
+      "updated_at": "20211014-1313"
+    }
+  ]
+}
