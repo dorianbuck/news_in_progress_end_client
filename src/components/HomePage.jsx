@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, GridRow } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { articlesIndex } from "../modules/apiHelper";
 import ArticleItem from "./ArticleItem";
 
