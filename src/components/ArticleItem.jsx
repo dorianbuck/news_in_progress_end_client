@@ -1,22 +1,16 @@
 import React from "react";
-import apiHelper from "../modules/apiHelper";
-import { Grid, Segment } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 
-const News = ({ article }) => {
+const ArticleItem = ({ articles, index }) => {
   return (
-    <Grid.Row>
-      <Grid.Column>
-        <Segment
-          data-cy="article"
-          header={article.title}
-          lede={article.lede}
-          authors={article.authors}
-          created_at={article.created_at}
-          updated_at={article.updated_at}
-        ></Segment>
-      </Grid.Column>
-    </Grid.Row>
+    <Segment data-cy={`article-${index}`}>
+      <h3 data-cy="title" header={articles.title}></h3>
+      <div data-cy="lede">lede={articles.lede}</div>
+      <div data-cy="authors">authors={articles.authors}</div>
+      <div data-cy="created_at">created_at={articles.created_at}</div>
+      <div data-cy="updated_at">updated_at={articles.updated_at}</div>
+    </Segment>
   );
 };
 
-export default News;
+export default ArticleItem;
