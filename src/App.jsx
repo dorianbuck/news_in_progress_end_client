@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import HomePage from "./HomePage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HomePage from "./components/HomePage";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 const App = () => {
