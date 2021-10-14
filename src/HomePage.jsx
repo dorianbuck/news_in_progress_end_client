@@ -3,11 +3,9 @@ import { Container } from "semantic-ui-react";
 
 const HomePage = () => {
   return (
-    <>
-      <Container>
-        <p>Content</p>
-      </Container>
-    </>
+    <Container>
+      <p>Content</p>
+    </Container>
   );
 };
 
