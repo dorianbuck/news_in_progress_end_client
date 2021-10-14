@@ -1,5 +1,5 @@
 import React from "react";
-import apiHelper from "../apiHelper";
+import apiHelper from "../modules/apiHelper";
 import { Grid, Segment } from "semantic-ui-react";
 
 const News = ({ article }) => {
