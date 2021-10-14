@@ -2,11 +2,13 @@ describe("A collection of articles is displayed in the main page", () => {
   beforeEach(() => {
     cy.intercept("GET", "**api/articles**", {
       fixture: "indexRespondsFromApi.json",
-    });
+      statusCode: 200,
+    }).as("indexApiGetRequest");
+
     cy.visit("/");
+    cy.get("[data-cy=news-section]").as("newsSection");
   });
 
-  cy.get("[data-cy=news-section]").as("newsSection");
 
   it("is expected to display a collection of articles", () => {
     cy.get("@newsSection").children().should("has.length", 3);
@@ -21,5 +23,8 @@ describe("A collection of articles is displayed in the main page", () => {
       cy.get("[data-cy=created_at]").should("be.visible");
       cy.get("[data-cy=updated_at]").should("be.visible");
     });
+  });
+  it("is expected to return a http status response", () => {
+    cy.wait("@indexApiGetRequest").its("response.statusCode").should("eq", 200);
   });
 });
