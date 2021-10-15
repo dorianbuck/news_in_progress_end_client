@@ -1,0 +1,28 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "TKTK",
+      "lede": "TKTKT",
+      "authors": ["bob journalist", "bobette journalist"],
+      "created_at": "2021-10-04T13:33:56.923Z",
+      "updated_at": "2021-10-04T13:33:56.923Z"
+    },
+    {
+      "id": 2,
+      "title": "TMTM",
+      "lede": "TMTMTM",
+      "authors": ["peter journalist", "pette journalist"],
+      "created_at": "2021-10-05T13:33:56.923Z",
+      "updated_at": "2021-10-05T13:33:56.923Z"
+    },
+    {
+      "id": 3,
+      "title": "TPTP",
+      "lede": "TPTPTP",
+      "authors": ["harry journalist", "harryette journalist"],
+      "created_at": "2021-10-06T13:33:56.923Z",
+      "updated_at": "2021-10-06T13:33:56.923Z"
+    }
+  ]
+}
