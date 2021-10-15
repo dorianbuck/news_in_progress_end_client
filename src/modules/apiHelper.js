@@ -1,12 +1,14 @@
 import axios from "axios";
 
-const articlesIndex = async () => {
-  try {
-    const response = await axios.get("/api/articles/");
-    return response.data.articles;
-  } catch (error) {
-    errorHandler(error);
-  }
+const Article = {
+  async index() {
+    try {
+      const response = await axios.get("/api/articles/");
+      return response.data.articles;
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
 };
 
 const errorHandler = (error) => {
@@ -15,4 +17,4 @@ const errorHandler = (error) => {
   );
 };
 
-export { articlesIndex };
+export { Article };

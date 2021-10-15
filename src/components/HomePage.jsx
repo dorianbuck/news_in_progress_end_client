@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "semantic-ui-react";
-import { articlesIndex } from "../modules/apiHelper";
+import { Article } from "../modules/apiHelper";
 import ArticleItem from "./ArticleItem";
 
 const HomePage = () => {
@@ -8,7 +8,7 @@ const HomePage = () => {
 
   useEffect(() => {
     (async () => {
-      const articlesResponse = await articlesIndex();
+      const articlesResponse = await Article.index();
       setArticles(articlesResponse);
     })();
   }, []);
