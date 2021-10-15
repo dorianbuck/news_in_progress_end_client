@@ -13,22 +13,13 @@ const HomePage = () => {
     })();
   }, []);
 
-  let articleList = articles.map((articleItem, index) => {
-    return (
-      <ArticleItem
-        articleItem={articleItem}
-        index={index}
-        key={articleItem.id}
-      />
-    );
+  let articleList = articles.map((articleItem, id) => {
+    return <ArticleItem articleItem={articleItem} id={id} />;
   });
 
   return (
     <Grid column="equal" centered stackable>
-      <Grid.Row>
-      {articleList}
-
-      </Grid.Row>
+      <Grid.Row>{articleList}</Grid.Row>
     </Grid>
   );
 };
