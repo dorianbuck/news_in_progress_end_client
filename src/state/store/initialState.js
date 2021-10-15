@@ -1,5 +1,5 @@
 const initialState = {
-  message: "Hello wolrd from redux",
+  articles: [],
 };
 
 export default initialState;
