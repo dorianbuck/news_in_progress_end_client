@@ -14,7 +14,7 @@ const HomePage = () => {
   }, []);
 
   let articleList = articles.map((articleItem, id) => {
-    return <ArticleItem articleItem={articleItem} id={id} />;
+    return <ArticleItem articleItem={articleItem} id={id} key={id} />;
   });
 
   return (
