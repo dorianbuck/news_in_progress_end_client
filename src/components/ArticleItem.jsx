@@ -4,7 +4,7 @@ import { Segment, Grid } from "semantic-ui-react";
 const ArticleItem = ({ articleItem, id }) => {
   return (
     <Grid.Column width="4" data-cy="news-section">
-      <Segment data-cy={`article-${id}`}>
+      <Segment data-cy={`article-${id}`} onClick={() => setDisplayedArticle()}>
         <h3 data-cy="title"> {articleItem.title}</h3>
         <div data-cy="lede">{articleItem.lede}</div>
         <div data-cy="authors">{articleItem.authors}</div>
