@@ -1,5 +1,9 @@
 describe("User can browser through the app", () => {
   beforeEach(() => {
+    cy.intercept("GET", "**api/articles**", {
+      fixture: "indexRespondsFromApi.json",
+    });
+
     cy.visit("/");
   });
 

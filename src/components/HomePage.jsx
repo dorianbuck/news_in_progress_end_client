@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import { Article } from "../modules/apiHelper";
 import ArticleItem from "./ArticleItem";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const [articles, setArticles] = useState([]);
+  const { articles } = useSelector((state) => state);
 
   useEffect(() => {
-    (async () => {
-      const articlesResponse = await Article.index();
-      setArticles(articlesResponse);
-    })();
+    Article.index();
   }, []);
 
   let articleList = articles.map((articleItem, id) => {
