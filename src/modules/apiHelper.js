@@ -13,6 +13,17 @@ const Article = {
       errorHandler(error);
     }
   },
+  async show(article_id) {
+    try {
+      const response = await axios.get(`/api/articles/${article_id}`);
+      store.dispatch({
+        type: "SHOW_ARTICLE",
+        payload: response.data.article,
+      });
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
 };
 
 const errorHandler = (error) => {

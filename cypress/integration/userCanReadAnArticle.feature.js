@@ -1,9 +1,14 @@
 describe("User can read an article", () => {
   beforeEach(() => {
-    cy.intercept("GET", "**/api/articles**", {
+    cy.intercept("GET", "**api/articles/", {
+      fixture: "indexRespondsFromApi.json",
+      statusCode: 200,
+    }).as("indexApiGetRequest");
+    
+    cy.intercept("GET", "**/api/articles/1", {
       fixture: "articleExample.json",
-    }); //Maybe use wildcard instead of article.id
-
+    }).as("showApiGetRequest"); //Maybe use wildcard instead of article.id
+    
     cy.visit("/");
     cy.get("[data-cy=article-0]").click();
   });

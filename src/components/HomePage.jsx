@@ -7,24 +7,27 @@ import DisplayedArticle from "./DisplayedArticle";
 
 const HomePage = () => {
   const { articles } = useSelector((state) => state);
-  const [dislpayedArticle, setDisplayedArticle] = useState();
+  const { displayedArticle } = useSelector((state) => state)
+  // const [displayedArticle, setDisplayedArticle] = useState();
 
   useEffect(() => {
     Article.index();
+    Article.show(1)
   }, []);
 
   let articleList = articles.map((articleItem, id) => {
     return <ArticleItem articleItem={articleItem} id={id} key={id} />;
   });
 
+
   return (
     <>
-      {dislpayedArticle ? (
+      {displayedArticle ? (
+        <DisplayedArticle displayedArticle={displayedArticle} />
+          ) : (
         <Grid column="equal" centered stackable>
           <Grid.Row>{articleList}</Grid.Row>
         </Grid>
-      ) : (
-        <DisplayedArticle displayedArticle={dislpayedArticle} />
       )}
     </>
   );
