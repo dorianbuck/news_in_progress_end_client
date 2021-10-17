@@ -10,12 +10,18 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         articles: action.payload,
-        article: null
+        article: null,
+        article_id: null,
       };
     case "SHOW_ARTICLE":
       return {
         ...state,
         article: action.payload,
+      };
+    case "SET_ARTICLE_ID":
+      return {
+        ...state,
+        article_id: action.payload,
       };
     default:
       return state;

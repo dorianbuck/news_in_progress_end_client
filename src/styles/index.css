@@ -2,6 +2,11 @@
 h3 {
   font-size: 2.5em;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  color: black;
+}
+
+a{
+  color:black
 }
 
 p {

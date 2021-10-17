@@ -35,9 +35,4 @@ describe("User can read an article", () => {
     cy.get("[data-cy=home]").click();
     cy.get("[data-cy=news-section]").children().should("be.visible");
   });
-
-  it("is expected to return to the home page when clicking anywhere", () => {
-    cy.get("[data-cy=overall-page]").click();
-    cy.get("[data-cy=news-section]").children().should("be.visible");
-  });
 });
