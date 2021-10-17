@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 import DisplayedArticle from "./DisplayedArticle";
 
 const HomePage = () => {
-  const { articles } = useSelector((state) => state);
-  const { article } = useSelector((state) => state);
+  const { article, articles } = useSelector((state) => state);
 
   useEffect(() => {
     Article.index();
