@@ -5,24 +5,25 @@ describe("User can read an article", () => {
       statusCode: 200,
     }).as("indexApiGetRequest");
 
-    cy.intercept("GET", "**/api/articles/1", {
+    cy.intercept("GET", "**/api/articles/0", {
       fixture: "articleExample.json",
-    }).as("showApiGetRequest"); //Maybe use wildcard instead of article.id
+    }).as("showApiGetRequest"); 
 
     cy.visit("/");
+    cy.get("[data-cy=overall-page]").children().first().children().first().children().first().click();
   });
 
   it("is expected to display the article", () => {
-    cy.get("[data-cy=overall-page]").children().first().click();
     cy.get("[data-cy=displayed-article]")
     .within(() => {
+      
       cy.get("[data-cy=article-title]").should(
         "contain",
         "Pablo Escobar: Colombia sterilises drug lord's hippos"
       );
       cy.get("[data-cy=article-authors]").should(
         "contain",
-        "Bob Journalist" && "Bobette Journalist"
+        "Bob Journalist, and Bobette Journalist"
       );
       cy.get("[data-cy=article-date]").should("contain", "2021-10-04");
       cy.get("[data-cy=article-body]").should(
@@ -31,4 +32,13 @@ describe("User can read an article", () => {
       );
     });
   });
+
+  it('is expected to return to the home page when clicking home page button', () => {
+    cy.get("[data-cy=home]").click()
+  });
+
+  it('is expected to return to the home page when clicking anywhere', () => {
+    cy.get("[data-cy=overall-page]").click()
+  });
+
 });

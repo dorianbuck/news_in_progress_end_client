@@ -20,7 +20,9 @@ const HomePage = () => {
   return (
     <div data-cy="overall-page">
       {article ? (
-        <DisplayedArticle displayedArticle={article} />
+        <div onClick={Article.index}>
+          <DisplayedArticle displayedArticle={article} />
+        </div>
       ) : (
         <Grid column="equal" centered stackable>
           <Grid.Row>{articleList}</Grid.Row>

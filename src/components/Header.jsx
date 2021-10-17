@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Article } from "../modules/apiHelper";
 
 const Header = () => {
+
   return (
     <Menu inverted data-cy="header">
       <Menu.Item

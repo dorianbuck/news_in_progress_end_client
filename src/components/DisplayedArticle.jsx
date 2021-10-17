@@ -1,19 +1,18 @@
 import React from "react";
 import { Container } from "semantic-ui-react";
-import _ from "lodash";
 
 const DisplayedArticle = ({ displayedArticle }) => {
   return (
     <Container text data-cy="displayed-article">
       <h3 data-cy="article-title">{displayedArticle.title}</h3>
-      <authors data-cy="article-authors">
-        By {_.startCase(displayedArticle.authors)}
-      </authors>
+      <p data-cy="article-authors">
+        By: {displayedArticle.authors}
+      </p>
       <br />
-      <date data-cy="article-date">
+      <p data-cy="article-date">
         Published on: {displayedArticle.created_at}
-      </date>
-      <body data-cy="article-body">{displayedArticle.body}</body>
+      </p>
+      <div className="body" data-cy="article-body">{displayedArticle.body}</div>
     </Container>
   );
 };
