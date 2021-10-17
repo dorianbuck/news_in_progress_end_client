@@ -13,7 +13,6 @@ const Header = () => {
         as={Link}
         to={{ pathname: "/" }}
         data-cy="home"
-        onClick={Article.index}
       >
         Home
       </Menu.Item>

@@ -3,10 +3,10 @@ import { Grid } from "semantic-ui-react";
 import { Article } from "../modules/apiHelper";
 import ArticleItem from "./ArticleItem";
 import { useSelector } from "react-redux";
-import DisplayedArticle from "./DisplayedArticle";
+// import DisplayedArticle from "./DisplayedArticle";
 
 const HomePage = () => {
-  const { article, articles } = useSelector((state) => state);
+  const { articles } = useSelector((state) => state);
 
   useEffect(() => {
     Article.index();
@@ -17,18 +17,23 @@ const HomePage = () => {
   });
 
   return (
-    <div data-cy="overall-page">
-      {article ? (
-        <div onClick={Article.index}>
-          <DisplayedArticle displayedArticle={article} />
-        </div>
-      ) : (
-        <Grid column="equal" centered stackable>
-          <Grid.Row>{articleList}</Grid.Row>
-        </Grid>
-      )}
-    </div>
+    <Grid column="equal" centered stackable>
+    <Grid.Row>{articleList}</Grid.Row>
+  </Grid>
   );
 };
 
 export default HomePage;
+
+
+// <div data-cy="overall-page">
+// {article ? (
+//   <div onClick={Article.index}>
+//     <DisplayedArticle displayedArticle={article} />
+//   </div>
+// ) : (
+//   <Grid column="equal" centered stackable>
+//     <Grid.Row>{articleList}</Grid.Row>
+//   </Grid>
+// )}
+// </div>
