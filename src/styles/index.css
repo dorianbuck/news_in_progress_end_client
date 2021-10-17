@@ -6,6 +6,25 @@ footer {
   height: 2.5rem;
 }
 
+h3 {
+  font-size: 2.5em;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+authors {
+  font-size: 1.5em;
+  }
+
+date {
+font-size: 1.5em;
+}
+
+body {
+  font-size: 1em;
+  text-align: justify;
+  }
+  
+
 footer p {
   color: #ccc;
 }

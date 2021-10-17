@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import { Article } from "../modules/apiHelper";
 import ArticleItem from "./ArticleItem";
@@ -11,9 +11,7 @@ const HomePage = () => {
 
   useEffect(() => {
     Article.index();
-    // Article.show(1);
   }, []);
-  // debugger;
 
   let articleList = articles.map((articleItem, id) => {
     return <ArticleItem articleItem={articleItem} id={id} key={id} />;
