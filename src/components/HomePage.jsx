@@ -7,29 +7,28 @@ import DisplayedArticle from "./DisplayedArticle";
 
 const HomePage = () => {
   const { articles } = useSelector((state) => state);
-  const { displayedArticle } = useSelector((state) => state)
-  // const [displayedArticle, setDisplayedArticle] = useState();
+  const { article } = useSelector((state) => state);
 
   useEffect(() => {
     Article.index();
-    Article.show(1)
+    // Article.show(1);
   }, []);
+  // debugger;
 
   let articleList = articles.map((articleItem, id) => {
     return <ArticleItem articleItem={articleItem} id={id} key={id} />;
   });
 
-
   return (
-    <>
-      {displayedArticle ? (
-        <DisplayedArticle displayedArticle={displayedArticle} />
-          ) : (
+    <div data-cy="overall-page">
+      {article ? (
+        <DisplayedArticle displayedArticle={article} />
+      ) : (
         <Grid column="equal" centered stackable>
           <Grid.Row>{articleList}</Grid.Row>
         </Grid>
       )}
-    </>
+    </div>
   );
 };
 
