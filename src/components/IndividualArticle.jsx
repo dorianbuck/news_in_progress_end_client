@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Container } from "semantic-ui-react";
 import { Article } from "../modules/apiHelper";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 const IndividualArticle = () => {
   const { article } = useSelector((state) => state);
+  const { id } = useParams();
 
   useEffect(() => {
-    Article.show(0);
+    Article.show(id);
   }, []);
 
   return (

@@ -5,12 +5,14 @@ import { useDispatch } from "react-redux";
 
 const ArticleItem = ({ articleItem, id }) => {
   const dispatch = useDispatch();
+
+
   return (
     <Grid.Column width="4" data-cy="news-section">
       <Segment
         data-cy={`article-${id}`}
         as={Link}
-        to={{ pathname: `/article-${id}` }}
+        to={{ pathname: `/article/${id}` }}
         onClick={() =>
           dispatch({
             type: "SET_ARTICLE_ID",
