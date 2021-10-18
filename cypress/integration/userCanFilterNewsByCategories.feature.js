@@ -1,10 +1,19 @@
 describe("GET request to get news by categories", () => {
   beforeEach(() => {
-    cy.intercept("GET", "**api/articles**", {
+    cy.intercept("GET", "**api/articles", {
       fixture: "indexRespondsFromApi.json",
       statusCode: 200,
     }).as("indexApiGetRequest");
+
+    cy.intercept("GET", "**/api/articles/business", {
+      fixture: "indexResponseForCategory.json",
+    });
     cy.visit("/");
+    cy.get("[data-cy=category-list]")
+      .click()
+      .within(() => {
+        cy.get("[data-cy=business-category]").click();
+      });
   });
 
   it("is expected to render a category list", () => {
@@ -17,11 +26,17 @@ describe("GET request to get news by categories", () => {
       });
   });
 
-  it('is expected to filter articles based on category when category is clicked', () => {
-    cy.get("[data-cy=category-list]").click().within(() => {
-      cy.get("[data-cy=business-category]").click()
-    })
-    cy.url().should('eq', 'http://localhost:3000/category/business')
-    // cy.get("[data-cy=news-section]").should
+  describe("once the category has been selected", () => {
+    it("is expected to change the URL to match the new page", () => {
+      cy.url().should("eq", "http://localhost:3000/category/business");
+    });
+
+    it("is expected to display the category title", () => {
+      cy.get("[data-cy=category-title]").should("contain", "Business");
+    });
+
+    it("is expected to filter articles based on category when category is clicked", () => {
+      cy.get("[data-cy=news-section]").should("have.length", 3);
+    });
   });
 });
