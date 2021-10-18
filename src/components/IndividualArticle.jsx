@@ -10,7 +10,7 @@ const IndividualArticle = () => {
 
   useEffect(() => {
     Article.show(id);
-  }, []);
+  }, [id]);
 
   return (
     <Container text data-cy="displayed-article">
