@@ -14,6 +14,7 @@ describe("User can read an article", () => {
   });
 
   it("is expected to display the article", () => {
+    cy.url().should("eq", "http://localhost:3000/article/0");
     cy.get("[data-cy=displayed-article]").within(() => {
       cy.get("[data-cy=article-title]").should(
         "contain",
@@ -33,6 +34,6 @@ describe("User can read an article", () => {
 
   it("is expected to return to the home page when clicking home page button", () => {
     cy.get("[data-cy=home]").click();
-    cy.get("[data-cy=news-section]").children().should("be.visible");
+    cy.url().should("eq", "http://localhost:3000/");
   });
 });
