@@ -8,7 +8,7 @@ const ArticleItem = ({ articleItem, id }) => {
       <Segment
         data-cy={`article-${id}`}
         as={Link}
-        to={{ pathname: `/article/${id}` }}
+        to={{ pathname: `/articles/${id}` }}
         basic
       >
         <h3 data-cy="title"> {articleItem.title}</h3>

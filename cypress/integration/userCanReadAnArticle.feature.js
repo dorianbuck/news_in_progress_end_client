@@ -14,7 +14,7 @@ describe("User can read an article", () => {
   });
 
   it("is expected to display the article", () => {
-    cy.url().should("eq", "http://localhost:3000/article/0");
+    cy.url().should("eq", "http://localhost:3000/articles/0");
     cy.get("[data-cy=displayed-article]").within(() => {
       cy.get("[data-cy=article-title]").should(
         "contain",
