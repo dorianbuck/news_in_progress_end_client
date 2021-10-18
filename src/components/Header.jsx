@@ -12,7 +12,7 @@ const Header = () => {
         to={{ pathname: "/" }}
         data-cy="home"
       >
-        Home
+        News In Progress
       </Menu.Item>
     </Menu>
   );

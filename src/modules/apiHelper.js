@@ -4,7 +4,7 @@ import store from "../state/store/configureStore";
 const Article = {
   async index() {
     try {
-      const response = await axios.get("/api/articles/");
+      const response = await axios.get("https://news-in-progress-api.herokuapp.com/api/articles/");
       store.dispatch({
         type: "SET_ARTICLES_INDEX",
         payload: response.data.articles,
@@ -15,7 +15,7 @@ const Article = {
   },
   async show(article_id) {
     try {
-      const response = await axios.get(`/api/articles/${article_id}`);
+      const response = await axios.get(`https://news-in-progress-api.herokuapp.com/api/articles/${article_id}`);
       store.dispatch({
         type: "SHOW_ARTICLE",
         payload: response.data.article,
