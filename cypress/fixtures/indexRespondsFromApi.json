@@ -6,7 +6,8 @@
       "lede": "TKTKT",
       "authors": ["bob journalist", "bobette journalist"],
       "created_at": "2021-10-04T13:33:56.923Z",
-      "updated_at": "2021-10-04T13:33:56.923Z"
+      "updated_at": "2021-10-04T13:33:56.923Z",
+      "category_name": "Business"
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "lede": "TMTMTM",
       "authors": ["peter journalist", "pette journalist"],
       "created_at": "2021-10-05T13:33:56.923Z",
-      "updated_at": "2021-10-05T13:33:56.923Z"
+      "updated_at": "2021-10-05T13:33:56.923Z",
+      "category_name": "Tech"
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "lede": "TPTPTP",
       "authors": ["harry journalist", "harryette journalist"],
       "created_at": "2021-10-06T13:33:56.923Z",
-      "updated_at": "2021-10-06T13:33:56.923Z"
+      "updated_at": "2021-10-06T13:33:56.923Z",
+      "category_name": "Science"
     }
   ]
 }
