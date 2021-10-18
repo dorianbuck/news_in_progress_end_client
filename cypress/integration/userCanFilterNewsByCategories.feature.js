@@ -16,4 +16,12 @@ describe("GET request to get news by categories", () => {
         cy.get("[data-cy=science-category]").should("contain", "Science");
       });
   });
+
+  it('is expected to filter articles based on category when category is clicked', () => {
+    cy.get("[data-cy=category-list]").click().within(() => {
+      cy.get("[data-cy=business-category]").click()
+    })
+    cy.url().should('eq', 'http://localhost:3000/category/business')
+    // cy.get("[data-cy=news-section]").should
+  });
 });

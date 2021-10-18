@@ -3,6 +3,7 @@ import { Grid, Menu, Dropdown } from "semantic-ui-react";
 import { Article } from "../modules/apiHelper";
 import ArticleItem from "./ArticleItem";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { articles } = useSelector((state) => state);
@@ -18,6 +19,8 @@ const HomePage = () => {
   let categoryList = articles.map((articleItem) => {
     return (
       <Dropdown.Item
+        as={Link}
+        to={{ pathname: `/category/${articleItem.category_name.toLowerCase()}` }}
         data-cy={`${articleItem.category_name.toLowerCase()}-category`}
       >
         {articleItem.category_name}

@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
+import Category from "./components/Category";
 import IndividualArticle from "./components/IndividualArticle";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
@@ -16,6 +17,7 @@ const App = () => {
           path={"/articles/:id"}
           component={IndividualArticle}
         ></Route>
+        <Route exact path={"/category/:category"} component={Category}></Route>
       </Switch>
       <Footer />
     </BrowserRouter>
