@@ -13,6 +13,7 @@ const Category = () => {
 
   useEffect(() => {
     Article.index(category);
+    debugger
   }, [category]);
 
   let articleList = articles.map((articleItem) => {
