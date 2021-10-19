@@ -7,12 +7,13 @@ import _ from "lodash";
 
 const HomePage = () => {
   const { articles } = useSelector((state) => state);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   const uniqueCategories = () => {
-    let categories = articles.map(article => {
-      return article.category_name
-    })
-    dispatch({type: 'SET_CATEGORIES', payload: _.uniq(categories)}) 
+    let categories = articles.map((article) => {
+      return article.category_name;
+    });
+    dispatch({ type: "SET_CATEGORIES", payload: _.uniq(categories) });
   };
 
   useEffect(() => {
@@ -21,10 +22,11 @@ const HomePage = () => {
 
   useEffect(() => {
     uniqueCategories();
+    // eslint-disable-next-line
   }, [articles]);
 
-  let articleList = articles.map((articleItem, id) => {
-    return <ArticleItem articleItem={articleItem} id={id} key={id} />;
+  let articleList = articles.map((articleItem) => {
+    return <ArticleItem articleItem={articleItem} key={articleItem.id} />;
   });
 
   return (
