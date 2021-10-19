@@ -10,13 +10,12 @@ const Category = () => {
   const { category } = useParams();
   const { articles } = useSelector((state) => state);
 
-
   useEffect(() => {
     Article.index(category);
   }, [category]);
 
   let articleList = articles.map((articleItem) => {
-    return <ArticleItem articleItem={articleItem}  key={articleItem.id} />;
+    return <ArticleItem articleItem={articleItem} key={articleItem.id} />;
   });
 
   return (

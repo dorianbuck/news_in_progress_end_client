@@ -5,7 +5,7 @@ describe("GET request to get news by categories", () => {
       statusCode: 200,
     }).as("indexApiGetRequest");
 
-    cy.intercept("GET", "**/api/articles/business", {
+    cy.intercept("GET", "**/api/articles/?category_name**", {
       fixture: "indexResponseForCategory.json",
     });
     cy.visit("/");

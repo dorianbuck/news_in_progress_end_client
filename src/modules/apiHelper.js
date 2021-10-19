@@ -4,12 +4,12 @@ import store from "../state/store/configureStore";
 const Article = {
   async index(category_name) {
     try {
-      let response
+      let response;
       if (category_name) {
-        response = await axios.get({
-          url: "https://news-in-progress-api.herokuapp.com/api/articles/",
-          params: { category_name: category_name },
-        });
+        response = await axios.get(
+          "https://news-in-progress-api.herokuapp.com/api/articles/",
+          { params: { category_name: category_name } }
+        );
       } else {
         response = await axios.get(
           "https://news-in-progress-api.herokuapp.com/api/articles/"
