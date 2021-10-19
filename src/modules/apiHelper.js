@@ -2,20 +2,19 @@ import axios from "axios";
 import store from "../state/store/configureStore";
 
 const Article = {
-  async index(category_name) {
+  async index(categoryName) {
     try {
       let response;
-      if (category_name) {
+      if (categoryName) {
         response = await axios.get(
           "https://news-in-progress-api.herokuapp.com/api/articles/",
-          { params: { category_name: category_name } }
+          { params: { category_name: categoryName } }
         );
       } else {
         response = await axios.get(
           "https://news-in-progress-api.herokuapp.com/api/articles/"
         );
       }
-
       store.dispatch({
         type: "SET_ARTICLES_INDEX",
         payload: response.data.articles,
@@ -24,10 +23,10 @@ const Article = {
       errorHandler(error);
     }
   },
-  async show(article_id) {
+  async show(articleId) {
     try {
       const response = await axios.get(
-        `https://news-in-progress-api.herokuapp.com/api/articles/${article_id}`
+        `https://news-in-progress-api.herokuapp.com/api/articles/${articleId}`
       );
       store.dispatch({
         type: "SHOW_ARTICLE",

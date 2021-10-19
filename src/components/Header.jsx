@@ -7,11 +7,12 @@ const Header = () => {
   const { categories } = useSelector((state) => state);
 
   let categoriesList = categories.map((category, index) => {
+    let categoryToLowerCase = category.toLowerCase();
     return (
       <Dropdown.Item
-        data-cy={`${category.toLowerCase()}-category`}
+        data-cy={`${categoryToLowerCase}-category`}
         as={Link}
-        to={{ pathname: `/category/${category.toLowerCase()}` }}
+        to={{ pathname: `/category/${categoryToLowerCase}` }}
         key={index}
       >
         {category}
@@ -38,31 +39,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// <Dropdown.Item
-//             as={Link}
-//             to={{
-//               pathname: "/category/business",
-//             }}
-//             data-cy="business-category"
-//           >
-//             Business
-//           </Dropdown.Item>
-//           <Dropdown.Item
-//             as={Link}
-//             to={{
-//               pathname: "/category/tech",
-//             }}
-//             data-cy="tech-category"
-//           >
-//             Tech
-//           </Dropdown.Item>
-//           <Dropdown.Item
-//             as={Link}
-//             to={{
-//               pathname: "/category/science",
-//             }}
-//             data-cy="science-category"
-//           >
-//             Science
-//           </Dropdown.Item>

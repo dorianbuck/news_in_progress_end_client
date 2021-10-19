@@ -30,7 +30,7 @@ const HomePage = () => {
   });
 
   return (
-    <Grid column="equal" centered stackable>
+    <Grid padded column="equal" centered stackable>
       <Grid.Row>{articleList}</Grid.Row>
     </Grid>
   );

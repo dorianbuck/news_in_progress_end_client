@@ -21,7 +21,7 @@ const Category = () => {
   return (
     <>
       <h1 data-cy="category-title">{_.startCase(category)}</h1>
-      <Grid column="equal" centered stackable>
+      <Grid padded column="equal" centered stackable>
         <Grid.Row>{articleList}</Grid.Row>
       </Grid>
     </>
