@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("User can read an article", () => {
   beforeEach(() => {
     cy.intercept("GET", "**api/articles/", {
@@ -5,16 +6,16 @@ describe("User can read an article", () => {
       statusCode: 200,
     }).as("indexApiGetRequest");
 
-    cy.intercept("GET", "**/api/articles/0", {
+    cy.intercept("GET", "**/api/articles/1", {
       fixture: "articleExample.json",
     }).as("showApiGetRequest");
 
     cy.visit("/");
-    cy.get("[data-cy=article-0]").click();
+    cy.get("[data-cy=article-1]").click();
   });
 
   it("is expected to display the article", () => {
-    cy.url().should("eq", "http://localhost:3000/articles/0");
+    cy.url().should("eq", "http://localhost:3000/articles/1");
     cy.get("[data-cy=displayed-article]").within(() => {
       cy.get("[data-cy=article-title]").should(
         "contain",

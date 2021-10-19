@@ -15,8 +15,8 @@ const Category = () => {
     Article.index(category);
   }, [category]);
 
-  let articleList = articles.map((articleItem, id) => {
-    return <ArticleItem articleItem={articleItem} id={id} key={id} />;
+  let articleList = articles.map((articleItem) => {
+    return <ArticleItem articleItem={articleItem}  key={articleItem.id} />;
   });
 
   return (
