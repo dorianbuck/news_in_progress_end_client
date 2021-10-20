@@ -5,8 +5,12 @@ import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Category from "./components/Category";
 import IndividualArticle from "./components/IndividualArticle";
+import i18n from "./i18n";
 
 const App = () => {
+  if (navigator.language.includes("sv")) {
+    i18n.changeLanguage("sv");
+  }
   return (
     <BrowserRouter>
       <Suspense fallback={<div>loading</div>}>

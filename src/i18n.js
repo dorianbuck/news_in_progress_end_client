@@ -3,16 +3,14 @@ import { initReactI18next } from "react-i18next";
 
 const resources = {
   sv: {
-    translation: { greeting: "Hej"}
+    translation: { greeting: "Hej" },
   },
   en: {
-    translation: { greeting: "Hi"}
+    translation: { greeting: "Hi" },
   },
-}
+};
 
-const fallbackLng = "en"
-
-
+const fallbackLng = "en";
 
 i18n.use(initReactI18next).init({
   resources,
@@ -24,5 +22,5 @@ i18n.use(initReactI18next).init({
     useSuspense: true,
   },
 });
-
+window.i18n = i18n;
 export default i18n;
