@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import _ from "lodash";
-import { Article } from "../modules/apiHelper";
+import { Article } from "../modules/article";
 import ArticleItem from "./ArticleItem";
 
 const HomePage = () => {

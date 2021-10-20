@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { Container } from "semantic-ui-react";
-import { Article } from "../modules/apiHelper";
+import { Article } from "../modules/article";
 
 const IndividualArticle = () => {
   const { article } = useSelector((state) => state);

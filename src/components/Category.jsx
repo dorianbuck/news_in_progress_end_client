@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
-import { Article } from "../modules/apiHelper";
+import { Article } from "../modules/article";
 import { Grid, Header } from "semantic-ui-react";
 import _ from "lodash";
 import ArticleItem from "./ArticleItem";
