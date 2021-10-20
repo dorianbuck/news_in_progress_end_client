@@ -3,10 +3,10 @@ import { initReactI18next } from "react-i18next";
 
 const resources = {
   sv: {
-    translation: { greeting: "Hej" },
+    translation: { greeting: "Hej", categories: "Sektioner" },
   },
   en: {
-    translation: { greeting: "Hi" },
+    translation: { greeting: "Hi", categories: "Categories" },
   },
 };
 

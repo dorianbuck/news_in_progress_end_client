@@ -34,7 +34,7 @@ const Header = () => {
         News In Progress
       </Menu.Item>
       <Menu.Item data-cy="greeting">{t("greeting")}</Menu.Item>
-      <Dropdown item text="Categories" data-cy="category-list">
+      <Dropdown item text={t("categories")} data-cy="category-list">
         <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
       </Dropdown>
     </Menu>
