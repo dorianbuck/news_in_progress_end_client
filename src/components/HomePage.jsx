@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "semantic-ui-react";
+import _ from "lodash";
 import { Article } from "../modules/apiHelper";
 import ArticleItem from "./ArticleItem";
-import { useSelector, useDispatch } from "react-redux";
-import _ from "lodash";
 
 const HomePage = () => {
   const { articles } = useSelector((state) => state);

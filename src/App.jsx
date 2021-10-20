@@ -1,10 +1,10 @@
 import React from "react";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Category from "./components/Category";
 import IndividualArticle from "./components/IndividualArticle";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import { Segment, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { Segment, Grid } from "semantic-ui-react";
 
 const ArticleItem = ({ articleItem }) => {
   return (

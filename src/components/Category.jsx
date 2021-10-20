@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Grid } from "semantic-ui-react";
-import { Article } from "../modules/apiHelper";
 import { useParams } from "react-router";
-import ArticleItem from "./ArticleItem";
 import { useSelector } from "react-redux";
+import { Article } from "../modules/apiHelper";
+import { Grid, Header } from "semantic-ui-react";
 import _ from "lodash";
+import ArticleItem from "./ArticleItem";
 
 const Category = () => {
   const { category } = useParams();
@@ -20,7 +20,7 @@ const Category = () => {
 
   return (
     <>
-      <h1 data-cy="category-title">{_.startCase(category)}</h1>
+      <Header textAlign="center" size="large" data-cy="category-title">{_.startCase(category)}</Header>
       <Grid padded column="equal" centered stackable>
         <Grid.Row>{articleList}</Grid.Row>
       </Grid>
