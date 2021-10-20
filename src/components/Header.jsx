@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Menu, Dropdown } from "semantic-ui-react";
+import { Menu, Dropdown, Select } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
@@ -22,6 +22,11 @@ const Header = () => {
     );
   });
 
+  const languageOptions = [
+    { key: 'en', value: 'en', text: 'English' },
+    { key: 'sv', value: 'sv', text: 'Swedish' }
+  ]
+
   return (
     <Menu inverted data-cy="header">
       <Menu.Item
@@ -37,6 +42,9 @@ const Header = () => {
       <Dropdown item text={t("categories")} data-cy="category-list">
         <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
       </Dropdown>
+      <Menu.Item position="right" inverted>
+        <Select data-cy="language-selector" placeholder="Choose Language" options={languageOptions} ></Select>
+      </Menu.Item>
     </Menu>
   );
 };
