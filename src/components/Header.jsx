@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Menu, Dropdown, Select } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 const Header = () => {
   const { categories } = useSelector((state) => state);
@@ -23,9 +24,9 @@ const Header = () => {
   });
 
   const languageOptions = [
-    { key: 'en', value: 'en', text: 'English' },
-    { key: 'sv', value: 'sv', text: 'Swedish' }
-  ]
+    { key: "en", value: "en", text: "English" },
+    { key: "sv", value: "sv", text: "Swedish" },
+  ];
 
   return (
     <Menu inverted data-cy="header">
@@ -42,8 +43,15 @@ const Header = () => {
       <Dropdown item text={t("categories")} data-cy="category-list">
         <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
       </Dropdown>
-      <Menu.Item position="right" inverted>
-        <Select data-cy="language-selector" placeholder="Choose Language" options={languageOptions} ></Select>
+      <Menu.Item position="right">
+        <Select
+          data-cy="language-selector"
+          placeholder="Choose Language"
+          options={languageOptions}
+          onChange={(event, data) => {
+            i18n.changeLanguage(data.value);
+          }}
+        ></Select>
       </Menu.Item>
     </Menu>
   );
