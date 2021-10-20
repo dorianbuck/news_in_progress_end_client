@@ -1,5 +1,10 @@
 const rootReducer = (state, action) => {
   switch (action.type) {
+    case 'SET_CATEGORIES':
+      return {
+        ...state,
+        categories: action.payload
+      }
     case "ERROR_MESSAGE":
       return {
         ...state,

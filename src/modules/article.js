@@ -2,9 +2,12 @@ import axios from "axios";
 import store from "../state/store/configureStore";
 
 const Article = {
-  async index() {
+  async index(categoryName) {
+    const options = categoryName ? { category_name: categoryName } : {};
     try {
-      const response = await axios.get("https://news-in-progress-api.herokuapp.com/api/articles/");
+      let response = await axios.get("/api/articles/", {
+        params: options,
+      });
       store.dispatch({
         type: "SET_ARTICLES_INDEX",
         payload: response.data.articles,
@@ -13,9 +16,9 @@ const Article = {
       errorHandler(error);
     }
   },
-  async show(article_id) {
+  async show(articleId) {
     try {
-      const response = await axios.get(`https://news-in-progress-api.herokuapp.com/api/articles/${article_id}`);
+      const response = await axios.get(`/api/articles/${articleId}`);
       store.dispatch({
         type: "SHOW_ARTICLE",
         payload: response.data.article,

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("A collection of articles is displayed in the main page", () => {
   beforeEach(() => {
     cy.intercept("GET", "**api/articles**", {
@@ -10,7 +11,7 @@ describe("A collection of articles is displayed in the main page", () => {
   });
 
   it("is expected to display a collection of articles", () => {
-    cy.get("@newsSection").children().should("have.length", 3);
+    cy.get("@newsSection").children().should("have.length", 5);
   });
 
   it("is expected to display a list of articles sorted by id/index", () => {
@@ -26,11 +27,11 @@ describe("A collection of articles is displayed in the main page", () => {
         );
         cy.get("[data-cy=created_at]").should(
           "contain",
-          "2021-10-04T13:33:56.923Z"
+          "2021-10-05"
         );
         cy.get("[data-cy=updated_at]").should(
           "contain",
-          "2021-10-04T13:33:56.923Z"
+          "2021-10-05"
         );
       });
   });

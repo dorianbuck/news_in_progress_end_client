@@ -1,14 +1,14 @@
 import React from "react";
-import { Segment, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { Segment, Grid } from "semantic-ui-react";
 
-const ArticleItem = ({ articleItem, id }) => {
+const ArticleItem = ({ articleItem }) => {
   return (
     <Grid.Column width="4" data-cy="news-section">
       <Segment
-        data-cy={`article-${id}`}
+        data-cy={`article-${articleItem.id}`}
         as={Link}
-        to={{ pathname: `/articles/${id}` }}
+        to={{ pathname: `/articles/${articleItem.id}` }}
         basic
       >
         <h3 data-cy="title"> {articleItem.title}</h3>
