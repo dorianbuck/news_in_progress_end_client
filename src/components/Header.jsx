@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Menu, Dropdown } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const { categories } = useSelector((state) => state);
+  const { t } = useTranslation();
 
   let categoriesList = categories.map((category, index) => {
     let categoryToLowerCase = category.toLowerCase();
@@ -31,6 +33,7 @@ const Header = () => {
       >
         News In Progress
       </Menu.Item>
+      <Menu.Item>{t("greeting")}</Menu.Item>
       <Dropdown item text="Categories" data-cy="category-list">
         <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
       </Dropdown>
