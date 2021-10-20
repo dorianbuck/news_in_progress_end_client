@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("A collection of articles is displayed in the main page", () => {
   beforeEach(() => {
     cy.intercept("GET", "**api/articles**", {

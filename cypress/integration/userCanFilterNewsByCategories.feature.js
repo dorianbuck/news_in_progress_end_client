@@ -1,19 +1,15 @@
+/* eslint-disable no-undef */
 describe("GET request to get news by categories", () => {
   beforeEach(() => {
     cy.intercept("GET", "**api/articles", {
       fixture: "indexRespondsFromApi.json",
       statusCode: 200,
-    }).as("indexApiGetRequest");
+    });
 
     cy.intercept("GET", "**/api/articles/?category_name**", {
       fixture: "indexResponseForCategory.json",
     });
     cy.visit("/");
-    cy.get("[data-cy=category-list]")
-      .click()
-      .within(() => {
-        cy.get("[data-cy=business-category]").click();
-      });
   });
 
   it("is expected to render a category list", () => {
@@ -27,6 +23,13 @@ describe("GET request to get news by categories", () => {
   });
 
   describe("once the category has been selected", () => {
+    beforeEach(() => {
+      cy.get("[data-cy=category-list]")
+        .click()
+        .within(() => {
+          cy.get("[data-cy=business-category]").click();
+        });
+    });
     it("is expected to change the URL to match the new page", () => {
       cy.url().should("eq", "http://localhost:3000/category/business");
     });
