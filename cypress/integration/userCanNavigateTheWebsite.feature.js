@@ -7,7 +7,11 @@ describe("User can browser through the app", () => {
     cy.visit("/");
   });
 
-  it("it is expected to display a header", () => {
+  it("is expected to display a loading symbol while loading", () => {
+    cy.get("[data-cy=loading-symbol]").should("be.visible")
+  })
+
+  it("is expected to display a header", () => {
     cy.get("[data-cy=header]").should("be.visible");
   });
 
