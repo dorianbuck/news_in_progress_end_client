@@ -1,13 +1,11 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import en from "./locales/en";
+import sv from "./locales/sv";
 
 const resources = {
-  sv: {
-    translation: { greeting: "Hej", categories: "Sektioner" },
-  },
-  en: {
-    translation: { greeting: "Hi", categories: "Categories" },
-  },
+  sv: sv,
+  en: en,
 };
 
 const fallbackLng = "en";

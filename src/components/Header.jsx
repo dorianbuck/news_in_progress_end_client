@@ -24,8 +24,8 @@ const Header = () => {
   });
 
   const languageOptions = [
-    { key: "en", value: "en", text: "English" },
-    { key: "sv", value: "sv", text: "Swedish" },
+    { key: "en", value: "en", text: t("languageNames.english") },
+    { key: "sv", value: "sv", text: t("languageNames.swedish") },
   ];
 
   return (
