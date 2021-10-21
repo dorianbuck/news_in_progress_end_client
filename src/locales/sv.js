@@ -1,6 +1,5 @@
 const sv = {
   translation: {
-    greeting: "Hej",
     categories: "Sektioner",
     languageNames: {
       english: "Engelska",
