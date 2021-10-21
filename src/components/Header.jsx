@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Menu, Dropdown } from "semantic-ui-react";
+import { Menu, Dropdown, Select } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 const Header = () => {
   const { categories } = useSelector((state) => state);
+  const { t } = useTranslation();
 
   let categoriesList = categories.map((category, index) => {
     let categoryToLowerCase = category.toLowerCase();
@@ -20,6 +23,11 @@ const Header = () => {
     );
   });
 
+  const languageOptions = [
+    { key: "en", value: "en", text: t("languageNames.english") },
+    { key: "sv", value: "sv", text: t("languageNames.swedish") },
+  ];
+
   return (
     <Menu inverted data-cy="header">
       <Menu.Item
@@ -31,9 +39,19 @@ const Header = () => {
       >
         News In Progress
       </Menu.Item>
-      <Dropdown item text="Categories" data-cy="category-list">
+      <Dropdown item text={t("categories")} data-cy="category-list">
         <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
       </Dropdown>
+      <Menu.Item position="right">
+        <Select
+          data-cy="language-selector"
+          placeholder="Choose Language"
+          options={languageOptions}
+          onChange={(event, data) => {
+            i18n.changeLanguage(data.value);
+          }}
+        ></Select>
+      </Menu.Item>
     </Menu>
   );
 };
