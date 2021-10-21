@@ -1,14 +1,9 @@
 describe("User can browser through the app", () => {
   beforeEach(() => {
-    cy.intercept("GET", "**api/articles**", {
+    cy.intercept("GET", "**api/articles**", {      
       fixture: "indexRespondsFromApi.json",
-    });
-
+    })
     cy.visit("/");
-  });
-
-  it("is expected to display a loading symbol while loading", () => {
-    cy.get("[data-cy=loading-symbol]").should("be.visible")
   })
 
   it("is expected to display a header", () => {

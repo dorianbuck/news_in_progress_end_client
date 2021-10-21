@@ -31,7 +31,7 @@ const HomePage = () => {
 
   return (
     <Grid padded column="equal" centered stackable>
-      <Grid.Row>{articleList}</Grid.Row>
+        <Grid.Row>{articleList}</Grid.Row>     
     </Grid>
   );
 };
