@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Category from "./components/Category";
+import CategoryHeader from "./components/CategoryHeader";
 import IndividualArticle from "./components/IndividualArticle";
 import i18n from "./i18n";
 
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
+      <CategoryHeader />
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route
