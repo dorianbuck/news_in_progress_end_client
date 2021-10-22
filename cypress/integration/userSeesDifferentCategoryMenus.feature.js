@@ -11,6 +11,7 @@ describe("The Categories render differently on mobile and desktop", () => {
     
     it("is expected that the user sees a dropdown menu with the news categories listed", () => {
       cy.viewport("iphone-x");
+      debugger
       cy.get("[data-cy=mobile-categories-list]").should('be.visible')
     });
   });
