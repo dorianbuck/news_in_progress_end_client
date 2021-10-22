@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Grid } from "semantic-ui-react";
+import { Grid, Loader } from "semantic-ui-react";
 import _ from "lodash";
 import { Article } from "../modules/article";
 import ArticleItem from "./ArticleItem";
@@ -8,6 +8,7 @@ import ArticleItem from "./ArticleItem";
 const HomePage = () => {
   const { articles } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const uniqueCategories = () => {
     let categories = articles.map((article) => {
@@ -17,7 +18,8 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    Article.index();
+    setLoading(true);
+    Article.index().then(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -30,9 +32,17 @@ const HomePage = () => {
   });
 
   return (
-    <Grid padded column="equal" centered stackable>
-      <Grid.Row>{articleList}</Grid.Row>
-    </Grid>
+    <>
+      {loading ? (
+        <Loader active data-cy="loading-symbol">
+          Loading
+        </Loader>
+      ) : (
+        <Grid padded column="equal" centered stackable>
+          <Grid.Row>{articleList}</Grid.Row>
+        </Grid>
+      )}
+    </>
   );
 };
 

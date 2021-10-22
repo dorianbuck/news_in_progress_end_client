@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -11,25 +11,20 @@ const App = () => {
   if (navigator.language.includes("sv")) {
     i18n.changeLanguage("sv");
   }
+
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>loading</div>}>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage}></Route>
-          <Route
-            exact
-            path={"/articles/:id"}
-            component={IndividualArticle}
-          ></Route>
-          <Route
-            exact
-            path={"/category/:category"}
-            component={Category}
-          ></Route>
-        </Switch>
-        <Footer />
-      </Suspense>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage}></Route>
+        <Route
+          exact
+          path={"/articles/:id"}
+          component={IndividualArticle}
+        ></Route>
+        <Route exact path={"/category/:category"} component={Category}></Route>
+      </Switch>
+      <Footer />
     </BrowserRouter>
   );
 };
