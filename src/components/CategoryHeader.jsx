@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Menu } from 'semantic-ui-react'
+
 
 const CategoryHeader = () => {
+  const { categories } = useSelector((state) => state);
+  const [activeItem, setActiveItem] = useState('business')
+
+  let categoriesList = categories.map((category, index) => {
+    let categoryToLowerCase = category.toLowerCase();
+    return (
+      <Menu.Item
+        // data-cy={`${categoryToLowerCase}-category`}
+        name={categoryToLowerCase}
+        as={Link}
+        to={{ pathname: `/category/${categoryToLowerCase}` }}
+        key={index}
+        active={activeItem === categoryToLowerCase}
+        onClick={() => setActiveItem(categoryToLowerCase)}
+      >
+        {category}
+      </Menu.Item>
+    );
+  });
+
   return (
-    <div>
-      Hello client categories!
-    </div>
+    <Menu pointing secondary textAlign='center'>
+      {/* <Menu.Item header>Categories</Menu.Item> */}
+      {categoriesList}
+    </Menu>
   )
 }
 
