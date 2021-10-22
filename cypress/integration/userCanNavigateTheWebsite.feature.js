@@ -15,7 +15,7 @@ describe("User can browser through the app", () => {
     cy.get("[data-cy=footer]").should("contain", "Copyright");
   });
 
-  it('is expected to display a loading symbol while getting articles', () => {
-    cy.get("[data-cy=loading-symbol]").should('be.visible')
+  it("is expected to display a loading symbol while getting articles", () => {
+    cy.get("[data-cy=loading-symbol]").should("be.visible");
   });
 });

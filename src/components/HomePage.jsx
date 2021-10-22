@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Grid } from "semantic-ui-react";
+import { Grid, Loader } from "semantic-ui-react";
 import _ from "lodash";
 import { Article } from "../modules/article";
 import ArticleItem from "./ArticleItem";
@@ -33,13 +33,15 @@ const HomePage = () => {
 
   return (
     <>
-      {loading ? 
-        <div data-cy="loading-symbol">Loading...</div>
-       : 
+      {loading ? (
+        <Loader active data-cy="loading-symbol">
+          Loading
+        </Loader>
+      ) : (
         <Grid padded column="equal" centered stackable>
           <Grid.Row>{articleList}</Grid.Row>
         </Grid>
-      }
+      )}
     </>
   );
 };
