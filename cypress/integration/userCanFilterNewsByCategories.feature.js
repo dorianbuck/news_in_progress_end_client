@@ -39,7 +39,7 @@ describe("GET request to get news by categories", () => {
     });
 
     it("is expected to filter articles based on category when category is clicked", () => {
-      cy.get("[data-cy=news-section]").should("have.length", 3);
+      cy.get("[data-cy=minor-news-section]").should("have.length", 3);
     });
   });
 });

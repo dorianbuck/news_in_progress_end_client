@@ -7,7 +7,28 @@ describe("A collection of articles is displayed in the main page", () => {
     }).as("indexApiGetRequest");
 
     cy.visit("/");
-    cy.get("[data-cy=news-section]").as("newsSection");
+    cy.get("[data-cy=minor-news-section]").as("newsSection");
+  });
+
+  it("is expected to return a http status response", () => {
+    cy.wait("@indexApiGetRequest").its("response.statusCode").should("eq", 200);
+  });
+
+  it("is expected to render a Top Story", () => {
+    cy.get("[data-cy=top-story]").within(() => {
+      cy.get("[data-cy=title]").should("contain.text", "Things are happening");
+      cy.get("[data-cy=lede]").should("include.text", "Lorem ipsum dolor sit");
+    });
+  });
+
+  it("is expected to render a list of Most Read Articles", () => {
+    cy.get("[data-cy=most-read-articles]").within(() => {
+      cy.get("[data-cy=story-1]").should("contain.text", "News Story Title");
+      cy.get("[data-cy=story-2]").should("contain.text", "News Story Title");
+      cy.get("[data-cy=story-3]").should("contain.text", "News Story Title");
+      cy.get("[data-cy=story-4]").should("contain.text", "News Story Title");
+      cy.get("[data-cy=story-5]").should("contain.text", "News Story Title");
+    });
   });
 
   it("is expected to display a collection of articles", () => {
@@ -25,17 +46,8 @@ describe("A collection of articles is displayed in the main page", () => {
           "contain.text",
           "bob journalistbobette journalist"
         );
-        cy.get("[data-cy=created_at]").should(
-          "contain",
-          "2021-10-05"
-        );
-        cy.get("[data-cy=updated_at]").should(
-          "contain",
-          "2021-10-05"
-        );
+        cy.get("[data-cy=created_at]").should("contain", "2021-10-05");
+        cy.get("[data-cy=updated_at]").should("contain", "2021-10-05");
       });
-  });
-  it("is expected to return a http status response", () => {
-    cy.wait("@indexApiGetRequest").its("response.statusCode").should("eq", 200);
   });
 });

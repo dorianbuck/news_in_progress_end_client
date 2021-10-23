@@ -4,7 +4,7 @@ import { Segment, Grid } from "semantic-ui-react";
 
 const ArticleItem = ({ articleItem }) => {
   return (
-    <Grid.Column data-cy="news-section">
+    <Grid.Column data-cy="minor-news-section">
       <Segment
         data-cy={`article-${articleItem.id}`}
         as={Link}
