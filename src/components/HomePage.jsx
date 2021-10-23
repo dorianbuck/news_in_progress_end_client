@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Grid, Loader } from "semantic-ui-react";
+import {
+  Grid,
+  Loader,
+  Container,
+  Image,
+  Header,
+  List,
+} from "semantic-ui-react";
 import _ from "lodash";
 import { Article } from "../modules/article";
 import ArticleItem from "./ArticleItem";
@@ -38,9 +45,41 @@ const HomePage = () => {
           Loading
         </Loader>
       ) : (
-        <Grid padded column="equal" centered stackable>
-          <Grid.Row>{articleList}</Grid.Row>
-        </Grid>
+        <Container text>
+          <Grid padded column="equal"  stackable>
+            <Grid.Row>
+              <Grid.Column width="5">
+                <Header >Top News Story</Header>
+                </Grid.Column>
+                <Grid.Column width="5">
+                  </Grid.Column>
+                <Grid.Column width="4">
+                 <Header>Most Read</Header>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width="5">
+                <Header>Main Story</Header>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                quidem velit provident! Quos perspiciatis exercitationem esse
+                facilis illum doloribus, architecto atque veritatis labore
+                voluptas quis, quia numquam qui cum recusandae!
+                </Grid.Column>
+                <Grid.Column width="6">
+              <Image src="https://picsum.photos/200"></Image>
+              </Grid.Column>
+              <Grid.Column width="4">
+                <List as="ol" divided verticalAlign="middle">
+                  <List.Item as="li">News Story Title</List.Item>
+                  <List.Item as="li">News Story Title</List.Item>
+                  <List.Item as="li">News Story Title</List.Item>
+                  <List.Item as="li">News Story Title</List.Item>
+                </List>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>{articleList}</Grid.Row>
+          </Grid>
+        </Container>
       )}
     </>
   );
