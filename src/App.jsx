@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import { isBrowser, isMobile } from "react-device-detect";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
@@ -13,11 +12,11 @@ const App = () => {
   if (navigator.language.includes("sv")) {
     i18n.changeLanguage("sv");
   }
-  debugger
+  debugger;
   return (
     <BrowserRouter>
       <Header />
-      {isBrowser && <div>You are a browser!</div>}
+      {/* {isBrowser && <div>You are a browser!</div>} */}
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route
@@ -25,13 +24,7 @@ const App = () => {
           path={"/articles/:id"}
           component={IndividualArticle}
         ></Route>
-        {isMobile && (
-          <Route
-            exact
-            path={"/category/:category"}
-            component={Category}
-          ></Route>
-        )}
+        <Route exact path={"/category/:category"} component={Category}></Route>
       </Switch>
       <Footer />
     </BrowserRouter>
