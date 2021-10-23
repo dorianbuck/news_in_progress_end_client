@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 import { Menu, Dropdown, Select } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
@@ -8,6 +9,7 @@ import i18n from "../i18n";
 const Header = () => {
   const { categories } = useSelector((state) => state);
   const { t } = useTranslation();
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
   let categoriesList = categories.map((category, index) => {
     let categoryToLowerCase = category.toLowerCase();
@@ -39,9 +41,9 @@ const Header = () => {
       >
         News In Progress
       </Menu.Item>
-      <Dropdown item text={t("categories")} data-cy="category-list">
+      {isTabletOrMobile && <Dropdown item text={t("categories")} data-cy="mobile-category-list">
         <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
-      </Dropdown>
+      </Dropdown>}
       <Menu.Item position="right">
         <Select
           data-cy="language-selector"
