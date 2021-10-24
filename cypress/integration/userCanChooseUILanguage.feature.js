@@ -23,7 +23,10 @@ describe("Internationalization - UI language", () => {
     });
     it("is expected to render the UI in English", () => {
       cy.get("@language").should("have.been.calledOnce");
-      cy.get("[data-cy=category-list]").should("contain.text", "Categories");
+      cy.get("[data-cy=language-selector]").should(
+        "contain.text",
+        "Choose Language"
+      );
     });
 
     it("is expected to switch to Swedish when Swedish is manually selected", () => {
@@ -32,7 +35,7 @@ describe("Internationalization - UI language", () => {
         .within(() => {
           cy.contains("Swedish").click();
         });
-      cy.get("[data-cy=category-list]").should("contain.text", "Sektioner");
+      cy.get("[data-cy=language-selector]").should("contain.text", "Svenska");
     });
   });
 
@@ -48,7 +51,10 @@ describe("Internationalization - UI language", () => {
     });
     it("is expected to render the UI in Swedish", () => {
       cy.get("@language").should("have.been.calledOnce");
-      cy.get("[data-cy=category-list]").should("contain.text", "Sektioner");
+      cy.get("[data-cy=language-selector]").should(
+        "contain.text",
+        "Välj Språk"
+      );
     });
 
     it("is expected to switch to English when English is manually selected", () => {
@@ -59,7 +65,7 @@ describe("Internationalization - UI language", () => {
         .within(() => {
           cy.contains("Engelska").click();
         });
-      cy.get("[data-cy=category-list]").should("contain.text", "Categories");
+      cy.get("[data-cy=language-selector]").should("contain.text", "English");
     });
   });
 });

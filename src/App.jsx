@@ -1,13 +1,17 @@
 import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import Category from "./components/Category";
+import CategoryHeader from "./components/CategoryHeader";
 import IndividualArticle from "./components/IndividualArticle";
 import i18n from "./i18n";
 
 const App = () => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
+
   if (navigator.language.includes("sv")) {
     i18n.changeLanguage("sv");
   }
@@ -15,6 +19,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
+      {!isTabletOrMobile && <CategoryHeader />}
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route
