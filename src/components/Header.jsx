@@ -42,7 +42,6 @@ const Header = () => {
       >
         <Image size="small" src={logo}></Image>
       </Menu.Item>
-
       {isTabletOrMobile && (
         <Dropdown item text={t("categories")} data-cy="mobile-category-list">
           <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
@@ -51,7 +50,7 @@ const Header = () => {
       <Menu.Item position="right">
         <Select
           data-cy="language-selector"
-          placeholder="Choose Language"
+          placeholder={t("chooseLanguage")}
           options={languageOptions}
           onChange={(event, data) => {
             i18n.changeLanguage(data.value);

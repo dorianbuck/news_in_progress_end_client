@@ -41,7 +41,7 @@ const HomePage = () => {
         </Loader>
       ) : (
         <Container text>
-          <Grid padded column="equal" stackable celled columns="3">
+          <Grid padded column="equal" stackable columns="3">
             <Grid.Column>
               <Header>Top Story</Header>
             </Grid.Column>

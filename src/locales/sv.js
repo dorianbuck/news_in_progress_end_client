@@ -5,6 +5,7 @@ const sv = {
       english: "Engelska",
       swedish: "Svenska",
     },
+    chooseLanguage: "Välj Språk"
   },
 };
 export default sv;
