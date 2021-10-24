@@ -1,10 +1,14 @@
 import React from "react";
 import { List, Grid, Header } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
+
 
 const MostRead = () => {
+  const { t } = useTranslation();
+
   return (
     <Grid.Column data-cy="most-read-articles">
-      <Header>Most Read Articles</Header>
+      <Header>{t("mostRead")}</Header>
       <List as="ol" divided verticalAlign="middle">
         <List.Item data-cy="story-1" as="li">
           News Story Title

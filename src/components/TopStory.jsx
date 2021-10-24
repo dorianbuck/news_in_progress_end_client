@@ -5,7 +5,7 @@ import { Grid, Header, Item, Image } from "semantic-ui-react";
 const TopStory = () => {
   const { articles } = useSelector((state) => state);
 
-  let topStory = articles.find(({top_story}) => top_story === true);
+  let topStory = articles.find(({ top_story }) => top_story === true);
   return (
     <>
       <Grid.Column data-cy="top-story">

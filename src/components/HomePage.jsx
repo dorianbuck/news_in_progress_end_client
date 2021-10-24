@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Loader, Container, Header } from "semantic-ui-react";
-import _ from "lodash";
 import { Article } from "../modules/article";
 import ArticleItem from "./ArticleItem";
 import TopStory from "./TopStory";
 import MostRead from "./MostRead";
+import { useTranslation } from "react-i18next";
+import _ from "lodash";
 
 const HomePage = () => {
   const { articles } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
+
 
   const uniqueCategories = () => {
     let categories = articles.map((article) => {
@@ -43,7 +46,7 @@ const HomePage = () => {
         <Container text>
           <Grid padded column="equal" stackable columns="3">
             <Grid.Column>
-              <Header>Top Story</Header>
+              <Header>{t("topStory")}</Header>
             </Grid.Column>
             <Grid.Row>
               <TopStory />
