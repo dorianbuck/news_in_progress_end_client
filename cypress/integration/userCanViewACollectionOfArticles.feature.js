@@ -47,7 +47,6 @@ describe("A collection of articles is displayed in the main page", () => {
           "bob journalistbobette journalist"
         );
         cy.get("[data-cy=created_at]").should("contain", "2021-10-05");
-        cy.get("[data-cy=updated_at]").should("contain", "2021-10-05");
       });
   });
 });

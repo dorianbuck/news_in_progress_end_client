@@ -43,7 +43,7 @@ const HomePage = () => {
           Loading
         </Loader>
       ) : (
-        <Container text>
+        <Container>
           <Grid padded column="equal" stackable columns="3">
             <Grid.Column>
               <Header>{t("topStory")}</Header>
