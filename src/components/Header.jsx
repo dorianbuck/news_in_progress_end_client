@@ -41,13 +41,15 @@ const Header = () => {
       >
         News In Progress
       </Menu.Item>
-      {isTabletOrMobile && <Dropdown item text={t("categories")} data-cy="mobile-category-list">
-        <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
-      </Dropdown>}
+      {isTabletOrMobile && (
+        <Dropdown item text={t("categories")} data-cy="mobile-category-list">
+          <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
+        </Dropdown>
+      )}
       <Menu.Item position="right">
         <Select
           data-cy="language-selector"
-          placeholder="Choose Language"
+          placeholder={t("chooseLanguage")}
           options={languageOptions}
           onChange={(event, data) => {
             i18n.changeLanguage(data.value);
