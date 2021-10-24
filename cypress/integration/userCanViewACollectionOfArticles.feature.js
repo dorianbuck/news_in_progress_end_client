@@ -10,7 +10,7 @@ describe("A collection of articles is displayed in the main page", () => {
     cy.get("[data-cy=minor-news-section]").as("newsSection");
   });
 
-  it("is expected to return a http status response", () => {
+  it.only("is expected to return a http status response", () => {
     cy.wait("@indexApiGetRequest").its("response.statusCode").should("eq", 200);
   });
 
