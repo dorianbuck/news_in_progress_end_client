@@ -46,7 +46,7 @@ const HomePage = () => {
               <Header>Top Story</Header>
             </Grid.Column>
             <Grid.Row>
-              <TopStory articles={articles} />
+              <TopStory />
               <MostRead />
             </Grid.Row>
             <Grid.Row>{articleList}</Grid.Row>
