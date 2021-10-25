@@ -7,7 +7,21 @@ describe("A collection of articles is displayed in the main page", () => {
     }).as("indexApiGetRequest");
 
     cy.visit("/");
-    cy.get("[data-cy=news-section]").as("newsSection");
+    cy.get("[data-cy=minor-news-section]").as("newsSection");
+  });
+
+  it("is expected to return a http status response", () => {
+    cy.wait("@indexApiGetRequest").its("response.statusCode").should("eq", 200);
+  });
+
+  it("is expected to render a Top Story", () => {
+    cy.get("[data-cy=top-story]").within(() => {
+      cy.get("[data-cy=title]").should(
+        "contain.text",
+        "World Goes Broke Again"
+      );
+      cy.get("[data-cy=lede]").should("include.text", "All gone.");
+    });
   });
 
   it("is expected to display a collection of articles", () => {
@@ -25,17 +39,7 @@ describe("A collection of articles is displayed in the main page", () => {
           "contain.text",
           "bob journalistbobette journalist"
         );
-        cy.get("[data-cy=created_at]").should(
-          "contain",
-          "2021-10-05"
-        );
-        cy.get("[data-cy=updated_at]").should(
-          "contain",
-          "2021-10-05"
-        );
+        cy.get("[data-cy=created_at]").should("contain", "2021-10-05");
       });
-  });
-  it("is expected to return a http status response", () => {
-    cy.wait("@indexApiGetRequest").its("response.statusCode").should("eq", 200);
   });
 });

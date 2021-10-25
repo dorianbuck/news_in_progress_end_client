@@ -34,12 +34,8 @@ describe("GET request to get news by categories", () => {
       cy.url().should("eq", "http://localhost:3000/category/business");
     });
 
-    it("is expected to display the category title", () => {
-      cy.get("[data-cy=category-title]").should("contain", "Business");
-    });
-
     it("is expected to filter articles based on category when category is clicked", () => {
-      cy.get("[data-cy=news-section]").should("have.length", 3);
+      cy.get("[data-cy=minor-news-section]").should("have.length", 3);
     });
   });
 });

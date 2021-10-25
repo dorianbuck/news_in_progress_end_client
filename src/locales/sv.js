@@ -1,11 +1,12 @@
 const sv = {
   translation: {
-    categories: "Sektioner",
+    categories: "Meny",
     languageNames: {
       english: "Engelska",
       swedish: "Svenska",
     },
-    chooseLanguage: "Välj Språk"
+    chooseLanguage: "Välj Språk",
+    topStory: "Dagens Toppnyheter",
   },
 };
 export default sv;

@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
-import { Menu, Dropdown, Select } from "semantic-ui-react";
+import { Menu, Dropdown, Select, Image } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
+import logo from "../img/logo.png";
 
 const Header = () => {
   const { categories } = useSelector((state) => state);
@@ -31,22 +32,36 @@ const Header = () => {
   ];
 
   return (
-    <Menu inverted data-cy="header">
-      <Menu.Item
-        id="home"
-        name="home"
-        as={Link}
-        to={{ pathname: "/" }}
-        data-cy="home"
-      >
-        News In Progress
-      </Menu.Item>
+    <div>
+      <Menu inverted data-cy="header">
+        <Menu.Item
+          id="home"
+          name="home"
+          as={Link}
+          to={{ pathname: "/" }}
+          data-cy="home"
+        >
+          <Image size="small" src={logo}></Image>
+        </Menu.Item>
+        {isTabletOrMobile && (
+          <Dropdown item text={t("categories")} data-cy="mobile-category-list">
+            <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
+          </Dropdown>
+        )}
+        {!isTabletOrMobile && (
+          <Menu.Item position="right">
+            <Select
+              data-cy="language-selector"
+              placeholder={t("chooseLanguage")}
+              options={languageOptions}
+              onChange={(event, data) => {
+                i18n.changeLanguage(data.value);
+              }}
+            ></Select>
+          </Menu.Item>
+        )}
+      </Menu>
       {isTabletOrMobile && (
-        <Dropdown item text={t("categories")} data-cy="mobile-category-list">
-          <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
-        </Dropdown>
-      )}
-      <Menu.Item position="right">
         <Select
           data-cy="language-selector"
           placeholder={t("chooseLanguage")}
@@ -55,8 +70,8 @@ const Header = () => {
             i18n.changeLanguage(data.value);
           }}
         ></Select>
-      </Menu.Item>
-    </Menu>
+      )}
+    </div>
   );
 };
 

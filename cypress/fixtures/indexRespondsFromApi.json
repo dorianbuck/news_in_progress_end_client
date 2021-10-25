@@ -7,7 +7,8 @@
       "authors": ["bob journalist", "bobette journalist"],
       "created_at": "2021-10-05",
       "updated_at": "2021-10-05",
-      "category_name": "Business"
+      "category_name": "Business",
+      "top_story": false
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "authors": ["peter journalist", "pette journalist"],
       "created_at": "2021-10-05",
       "updated_at": "2021-10-05",
-      "category_name": "Tech"
+      "category_name": "Tech",
+      "top_story": false
     },
     {
       "id": 3,
@@ -25,16 +27,18 @@
       "authors": ["harry journalist", "harryette journalist"],
       "created_at": "2021-10-06",
       "updated_at": "2021-10-06",
-      "category_name": "Science"
+      "category_name": "Science",
+      "top_story": false
     },
     {
       "id": 4,
       "title": "World Goes Broke Again",
-      "lede": "All gone",
+      "lede": "All gone.",
       "authors": ["peter journalist", "pette journalist"],
       "created_at": "2021-10-05",
       "updated_at": "2021-10-05",
-      "category_name": "Business"
+      "category_name": "Business",
+      "top_story": true
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "authors": ["harry journalist", "harryette journalist"],
       "created_at": "2021-10-05",
       "updated_at": "2021-10-05",
-      "category_name": "Business"
+      "category_name": "Business",
+      "top_story": false
     }
   ]
 }
