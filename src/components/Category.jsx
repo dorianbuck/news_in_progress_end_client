@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { Article } from "../modules/article";
-import { Grid, Header, Container } from "semantic-ui-react";
-import _ from "lodash";
+import { Grid, Container } from "semantic-ui-react";
 import ArticleItem from "./ArticleItem";
 
 const Category = () => {
