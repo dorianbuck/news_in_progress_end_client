@@ -15,6 +15,10 @@ describe("User can read an article", () => {
   });
 
   it("is expected to display the article", () => {
+    cy.window().its("store").invoke("dispatch", {
+      type: "SET_CURRENT_USER",
+      payload: true,
+    });
     cy.url().should("eq", "http://localhost:3000/articles/1");
     cy.get("[data-cy=displayed-article]").within(() => {
       cy.get("[data-cy=article-title]").should(
@@ -36,5 +40,14 @@ describe("User can read an article", () => {
   it("is expected to return to the home page when clicking home page button", () => {
     cy.get("[data-cy=home]").click();
     cy.url().should("eq", "http://localhost:3000/");
+  });
+
+  describe("when the user in not signed in", () => {
+    it("is expected to display a paywall", () => {
+      cy.get("[data-cy=paywall]").within(() => {
+        cy.get("[data-cy=register-button]").should("be.visible");
+        cy.get("[data-cy=sign-in-button]").should("be.visible");
+      });
+    });
   });
 });
