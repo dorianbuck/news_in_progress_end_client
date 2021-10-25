@@ -22,7 +22,7 @@ const rootReducer = (state, action) => {
         ...state,
         article: action.payload,
       };
-    case "SET_CURRENT-USER":
+    case "SET_CURRENT_USER":
       return {
         ...state,
         currentUser: action.payload,
