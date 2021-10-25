@@ -6,8 +6,7 @@ const en = {
       swedish: "Swedish",
     },
     chooseLanguage: "Choose Language",
-    topStory: "Top Story",
-    mostRead: "Most Read"
+    topStory: "Todays Top Story",
   },
 };
 export default en;

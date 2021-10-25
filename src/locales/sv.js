@@ -6,8 +6,7 @@ const sv = {
       swedish: "Svenska",
     },
     chooseLanguage: "Välj Språk",
-    topStory: "Toppnytt",
-    mostRead: "Aktuella Ämnen"
+    topStory: "Dagens Toppnyheter",
   },
 };
 export default sv;

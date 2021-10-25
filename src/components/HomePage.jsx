@@ -4,7 +4,6 @@ import { Grid, Loader, Container, Header } from "semantic-ui-react";
 import { Article } from "../modules/article";
 import ArticleItem from "./ArticleItem";
 import TopStory from "./TopStory";
-import MostRead from "./MostRead";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 
@@ -13,7 +12,6 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
-
 
   const uniqueCategories = () => {
     let categories = articles.map((article) => {
@@ -50,7 +48,6 @@ const HomePage = () => {
             </Grid.Column>
             <Grid.Row>
               <TopStory />
-              <MostRead />
             </Grid.Row>
             <Grid.Row>{articleList}</Grid.Row>
           </Grid>

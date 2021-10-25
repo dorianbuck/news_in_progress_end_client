@@ -20,9 +20,6 @@ const Category = () => {
 
   return (
     <>
-      <Header textAlign="center" size="large" data-cy="category-title">
-        {_.startCase(category)}
-      </Header>
       <Container>
         <Grid padded column="equal" centered stackable columns="3">
           <Grid.Row>{articleList}</Grid.Row>

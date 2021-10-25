@@ -16,18 +16,11 @@ describe("A collection of articles is displayed in the main page", () => {
 
   it("is expected to render a Top Story", () => {
     cy.get("[data-cy=top-story]").within(() => {
-      cy.get("[data-cy=title]").should("contain.text", "World Goes Broke Again");
+      cy.get("[data-cy=title]").should(
+        "contain.text",
+        "World Goes Broke Again"
+      );
       cy.get("[data-cy=lede]").should("include.text", "All gone.");
-    });
-  });
-
-  it("is expected to render a list of Most Read Articles", () => {
-    cy.get("[data-cy=most-read-articles]").within(() => {
-      cy.get("[data-cy=story-1]").should("contain.text", "News Story Title");
-      cy.get("[data-cy=story-2]").should("contain.text", "News Story Title");
-      cy.get("[data-cy=story-3]").should("contain.text", "News Story Title");
-      cy.get("[data-cy=story-4]").should("contain.text", "News Story Title");
-      cy.get("[data-cy=story-5]").should("contain.text", "News Story Title");
     });
   });
 
