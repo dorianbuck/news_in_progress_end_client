@@ -1,11 +1,17 @@
 import React from "react";
 import { Container, Form, Input, Button } from "semantic-ui-react";
+import Authentication from "../modules/authentication";
 
 const RegisterPage = () => {
+  const handleSubmit = (event) => {
+    Authentication.register(event);
+  };
+
   return (
     <Container>
-      <Form>
+      <Form data-cy="register-form" onSubmit={handleSubmit}>
         <Form.Field
+          name="email"
           data-cy="email-input"
           control={Input}
           label="Email"
@@ -13,12 +19,14 @@ const RegisterPage = () => {
           placeholder="example@email.com"
         />
         <Form.Field
+          name="password"
           data-cy="password-input"
           control={Input}
           label="Password"
           type="password"
         />
         <Form.Field
+          name="confirmPassword"
           data-cy="confirm-password-input"
           control={Input}
           label="Confirm Password"
