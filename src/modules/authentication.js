@@ -3,9 +3,8 @@ import store from "../state/store/configureStore";
 
 const Authentication = {
   async register(event) {
-    let response;
     try {
-      response = await axios({
+      await axios({
         method: "post",
         url: "/api/auth",
         params: {
@@ -15,11 +14,11 @@ const Authentication = {
         },
       }).then((response) => {
         if (response.data.status === "success") {
-          debugger
           store.dispatch({
             type: "SET_CURRENT_USER",
             payload: response.data.data,
           });
+          return true
         }
       });
     } catch (error) {

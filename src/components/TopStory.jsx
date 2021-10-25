@@ -13,7 +13,7 @@ const TopStory = () => {
         <Item data-cy="lede">{topStory?.lede}</Item>
       </Grid.Column>
       <Grid.Column>
-        <Image src="https://picsum.photos/300"></Image>
+        {/* <Image src="https://picsum.photos/300"></Image> */}
       </Grid.Column>
     </>
   );

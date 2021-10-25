@@ -21,11 +21,19 @@ describe("User can register for an account", () => {
       cy.get("[data-cy=confirm-password-input").type("password");
       cy.get("[data-cy=btn-signup]").click();
     });
-    it.only("is expected to make an API Post request and ", () => {
+    it("is expected to display a success message", () => {
       cy.get("[data-cy=registration-message]").should(
         "contain",
         "Registration successful"
       );
+    });
+    it("is expected to clear the input fields after registration", () => {
+      cy.get("body").trigger("keydown", { keyCode: 27 });
+      cy.wait(500);
+      cy.get("body").trigger("keyup", { keyCode: 27 });
+      cy.get("[data-cy=email-input]").should("contain.text", "");
+      cy.get("[data-cy=password-input]").should("contain.text", "");
+      cy.get("[data-cy=confirm-password-input").should("contain.text", "");
     });
   });
 });
