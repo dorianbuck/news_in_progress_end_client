@@ -14,6 +14,13 @@ describe("User can read an article", () => {
     cy.get("[data-cy=article-1]").click();
   });
 
+  it("is expected to display a paywall when not signed in", () => {
+    cy.get("[data-cy=paywall]").within(() => {
+      cy.get("[data-cy=register-button]").should("be.visible");
+      cy.get("[data-cy=sign-in-button]").should("be.visible");
+    });
+  });
+
   it("is expected to display the article", () => {
     cy.url().should("eq", "http://localhost:3000/articles/1");
     cy.get("[data-cy=displayed-article]").within(() => {
