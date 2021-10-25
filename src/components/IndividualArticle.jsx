@@ -31,12 +31,10 @@ const IndividualArticle = () => {
             <Button data-cy="register-button" color="orange">
               Register Now
             </Button>
-            <>
               <strong align="center">Already signed up?</strong>
               <Button data-cy="sign-in-button" color="orange">
                 Sign in
               </Button>
-            </>
           </Card>
         </div>
       ) : (

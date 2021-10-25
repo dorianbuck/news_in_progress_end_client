@@ -43,7 +43,7 @@ describe("User can read an article", () => {
   });
 
   describe("when the user in not signed in", () => {
-    it("is expected to display a paywall when not signed in", () => {
+    it("is expected to display a paywall", () => {
       cy.get("[data-cy=paywall]").within(() => {
         cy.get("[data-cy=register-button]").should("be.visible");
         cy.get("[data-cy=sign-in-button]").should("be.visible");
