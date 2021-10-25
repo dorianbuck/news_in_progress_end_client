@@ -26,7 +26,6 @@ const CategoryHeader = () => {
 
   return (
     <Menu pointing secondary data-cy="category-list">
-      {/* <Menu.Item header>{t("categories")}</Menu.Item> */}
       {categoriesList}
     </Menu>
   );
