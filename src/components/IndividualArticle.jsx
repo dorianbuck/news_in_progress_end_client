@@ -18,13 +18,13 @@ const IndividualArticle = () => {
       <h3 data-cy="article-title">{article?.title}</h3>
       <p data-cy="article-authors">By: {article?.authors}</p>
       {!authenticated ? (
-        <div align="center">
+        <div>
           <Card fluid data-cy="paywall">
-            <h2>
+            <h2 align="center">
               To read this article please consider registering for an account
             </h2>
             <ul>
-              Benfits to registering:
+              <strong>Benefits to registering:</strong>
               <li>Full access to our unique, groundbreaking journalism.</li>
               <li>Read and write comments about the articles you love.</li>
             </ul>
@@ -32,7 +32,7 @@ const IndividualArticle = () => {
               Register Now
             </Button>
             <>
-              <div>Already signed up?</div>
+              <strong align="center">Already signed up?</strong>
               <Button data-cy="sign-in-button" color="orange">
                 Sign in
               </Button>

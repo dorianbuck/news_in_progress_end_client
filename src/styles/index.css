@@ -35,3 +35,7 @@ footer {
 footer p {
   color: #ccc;
 }
+
+ul {
+  list-style-type: none;
+}
