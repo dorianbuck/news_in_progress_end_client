@@ -49,16 +49,25 @@ const Header = () => {
           </Dropdown>
         )}
         {!isTabletOrMobile && (
-          <Menu.Item position="right">
-            <Select
-              data-cy="language-selector"
-              placeholder={t("chooseLanguage")}
-              options={languageOptions}
-              onChange={(event, data) => {
-                i18n.changeLanguage(data.value);
-              }}
-            ></Select>
-          </Menu.Item>
+          <>
+            <Menu.Item position="right">
+              <Select
+                data-cy="language-selector"
+                placeholder={t("chooseLanguage")}
+                options={languageOptions}
+                onChange={(event, data) => {
+                  i18n.changeLanguage(data.value);
+                }}
+              />
+            </Menu.Item>
+            <Menu.Item
+              id="sign-up"
+              name={t("signUp")}
+              as={Link}
+              to={{ pathname: "/register" }}
+              data-cy="sign-up-button"
+            />
+          </>
         )}
       </Menu>
       {isTabletOrMobile && (
