@@ -30,13 +30,11 @@ const Register = () => {
             type: "SET_CURRENT_USER",
             payload: response.data,
           });
-        } else {
         }
       })
       .catch((error) => {
         setOpen(true);
         errorHandler(error);
-        console.log(" errorrrr in the mid-brain");
       });
   };
 
