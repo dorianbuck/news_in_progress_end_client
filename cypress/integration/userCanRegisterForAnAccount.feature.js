@@ -6,7 +6,14 @@ describe("User can register for an account", () => {
     cy.intercept("POST", "**api/auth**", {
       fixture: "registrationSuccess.json",
     });
-    cy.visit("/");
+    cy.visit("/", {
+      onBeforeLoad(window) {
+        Object.defineProperty(window.navigator, "language", {
+          get: cy.stub().returns("en-GB").as("language"),
+        });
+      },
+    });
+    
     cy.get("[data-cy=sign-up-button]").click();
   });
 
@@ -22,6 +29,7 @@ describe("User can register for an account", () => {
       cy.get("[data-cy=btn-signup]").click();
     });
     it("is expected to display a success message", () => {
+
       cy.get("[data-cy=registration-message]").should(
         "contain",
         "Registration successful"

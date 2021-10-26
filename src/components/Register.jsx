@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Container,
   Form,
@@ -9,23 +9,63 @@ import {
   Header,
 } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
-import Authentication from "../modules/authentication";
+// import Authentication from "../modules/authentication";
+import auth from "../modules/auth";
+import errorHandler from "../modules/error";
 
 const Register = () => {
-  const { error, authenticated, message } = useSelector((store) => store);
+  const dispatch = useDispatch();
+  const { error, authenticated, message, email, password } = useSelector(
+    (store) => store
+  );
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  // const { authenticated } = useSelector((state) => state)
 
-  const handleSubmit = (event) => {
-    Authentication.register(event).then(setOpen(true));
-    document.getElementById("form-input-control-error-email").value = "";
-    document.getElementById("form-input-password").value = "";
-    document.getElementById("form-input-confirm-password").value = "";
+  const handleAuthentication = async () => {
+    let response = await auth
+      .signUp(email, password)
+      .then((response) => {
+        debugger;
+        if (response.data.status === "success") {
+          setOpen(true);
+          dispatch({
+            type: "SET_CURRENT_USER",
+            payload: response.data,
+          });
+        } else errorHandler(error);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  // const handleSubmit = (event) => {
+  //   Authentication.register(event).then(setOpen(true));
+  //   document.getElementById("form-input-control-error-email").value = "";
+  //   document.getElementById("form-input-password").value = "";
+  //   document.getElementById("form-input-confirm-password").value = "";
+  // };
+
+  // auth
+  // .signUp(
+  //   {
+  //     email: "john-doe@gmail.com",
+  //     password: "myP@ssw0ord!",
+  //     avatarUrl: "www.image.com/picture.jpg"
+  //   },
+  //   "www.url-after-confirmation.com"
+  // )
+  // .then(userDatas => {
+  //   console.log(userDatas);
+  // })
+  // .catch(error => {
+  //   console.log(error);
+  // });
 
   return (
     <Container>
-      <Form data-cy="register-form" onSubmit={handleSubmit}>
+      <Form data-cy="register-form">
         <Form.Field
           name="email"
           data-cy="email-input"
@@ -55,6 +95,7 @@ const Register = () => {
           control={Button}
           id="form-button-control-public"
           content={t("submit")}
+          onClick={() => handleAuthentication()}
         />
       </Form>
       <Modal
