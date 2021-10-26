@@ -9,7 +9,6 @@ import {
   Header,
 } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
-// import Authentication from "../modules/authentication";
 import auth from "../modules/auth";
 import errorHandler from "../modules/error";
 
@@ -20,48 +19,26 @@ const Register = () => {
   );
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
-  // const { authenticated } = useSelector((state) => state)
 
   const handleAuthentication = async () => {
     let response = await auth
       .signUp(email, password)
       .then((response) => {
-        debugger;
         if (response.data.status === "success") {
           setOpen(true);
           dispatch({
             type: "SET_CURRENT_USER",
             payload: response.data,
           });
-        } else errorHandler(error);
+        } else {
+        }
       })
       .catch((error) => {
-        console.log(error);
+        setOpen(true);
+        errorHandler(error);
+        console.log(" errorrrr in the mid-brain");
       });
   };
-
-  // const handleSubmit = (event) => {
-  //   Authentication.register(event).then(setOpen(true));
-  //   document.getElementById("form-input-control-error-email").value = "";
-  //   document.getElementById("form-input-password").value = "";
-  //   document.getElementById("form-input-confirm-password").value = "";
-  // };
-
-  // auth
-  // .signUp(
-  //   {
-  //     email: "john-doe@gmail.com",
-  //     password: "myP@ssw0ord!",
-  //     avatarUrl: "www.image.com/picture.jpg"
-  //   },
-  //   "www.url-after-confirmation.com"
-  // )
-  // .then(userDatas => {
-  //   console.log(userDatas);
-  // })
-  // .catch(error => {
-  //   console.log(error);
-  // });
 
   return (
     <Container>
@@ -76,7 +53,6 @@ const Register = () => {
         />
         <Form.Field
           name="password"
-          id="form-input-password"
           data-cy="password-input"
           control={Input}
           label={t("password")}
@@ -84,7 +60,6 @@ const Register = () => {
         />
         <Form.Field
           name="confirmPassword"
-          id="form-input-confirm-password"
           data-cy="confirm-password-input"
           control={Input}
           label={t("confirmPassword")}
@@ -93,7 +68,6 @@ const Register = () => {
         <Form.Field
           data-cy="btn-signup"
           control={Button}
-          id="form-button-control-public"
           content={t("submit")}
           onClick={() => handleAuthentication()}
         />
