@@ -21,7 +21,7 @@ const Register = () => {
   const { t } = useTranslation();
 
   const handleAuthentication = async () => {
-    let response = await auth
+    await auth
       .signUp(email, password)
       .then((response) => {
         if (response.data.status === "success") {
