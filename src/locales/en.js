@@ -7,6 +7,11 @@ const en = {
     },
     chooseLanguage: "Choose Language",
     topStory: "Todays Top Story",
+    password: "Password",
+    confirmPassword: "Confirm password",
+    submit: "Submit",
+    registrationSuccessful: "Registration successful",
+    signUp: "Sign up"
   },
 };
 export default en;

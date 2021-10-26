@@ -4,6 +4,7 @@ const initialState = {
   categories: [],
   authenticated: false,
   error: false,
+  message: "",
 };
 
 export default initialState;

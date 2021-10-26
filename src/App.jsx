@@ -8,7 +8,7 @@ import Category from "./components/Category";
 import CategoryHeader from "./components/CategoryHeader";
 import IndividualArticle from "./components/IndividualArticle";
 import i18n from "./i18n";
-import RegisterPage from "./components/RegisterPage";
+import Register from "./components/Register";
 
 const App = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
@@ -29,7 +29,7 @@ const App = () => {
           component={IndividualArticle}
         ></Route>
         <Route exact path={"/category/:category"} component={Category}></Route>
-        <Route exact path={"/register"} component={RegisterPage}></Route>
+        <Route exact path={"/register"} component={Register}></Route>
       </Switch>
       <Footer />
     </BrowserRouter>

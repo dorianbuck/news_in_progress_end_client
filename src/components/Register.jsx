@@ -8,25 +8,20 @@ import {
   Modal,
   Header,
 } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
 import Authentication from "../modules/authentication";
 
-const RegisterPage = () => {
-  const { error, authenticated } = useSelector((store) => store)
+const Register = () => {
+  const { error, authenticated, message } = useSelector((store) => store);
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = (event) => {
-    Authentication.register(event);
-    document.getElementById('form-input-control-error-email').value = ""
-    document.getElementById('form-input-password').value = ""
-    document.getElementById('form-input-confirm-password').value = ""
+    Authentication.register(event).then(setOpen(true));
+    document.getElementById("form-input-control-error-email").value = "";
+    document.getElementById("form-input-password").value = "";
+    document.getElementById("form-input-confirm-password").value = "";
   };
-
-  useEffect(() => {
-    if (error) { console.log("Yo there's an error")
-    } else if (authenticated) {
-      setOpen(true)
-    }
-  }, [authenticated, error])
 
   return (
     <Container>
@@ -44,7 +39,7 @@ const RegisterPage = () => {
           id="form-input-password"
           data-cy="password-input"
           control={Input}
-          label="Password"
+          label={t("password")}
           type="password"
         />
         <Form.Field
@@ -52,14 +47,14 @@ const RegisterPage = () => {
           id="form-input-confirm-password"
           data-cy="confirm-password-input"
           control={Input}
-          label="Confirm Password"
+          label={t("confirmPassword")}
           type="password"
         />
         <Form.Field
           data-cy="btn-signup"
           control={Button}
           id="form-button-control-public"
-          content="Submit"
+          content={t("submit")}
         />
       </Form>
       <Modal
@@ -72,7 +67,8 @@ const RegisterPage = () => {
       >
         <Modal.Content>
           <Header inverted data-cy="registration-message">
-            Registration successful
+            {authenticated && t("registrationSuccessful")}
+            {error && message}
           </Header>
         </Modal.Content>
       </Modal>
@@ -80,4 +76,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default Register;

@@ -38,20 +38,31 @@ describe("User can register for an account", () => {
   });
 
   describe("when the registration is unsuccessful", () => {
-    describe("because of missmatched passwords", () => {
-      beforeEach(() => {
-        cy.intercept("POST", "**api/auth**", {
-          statusCode: 422,
-        });
-        cy.get("[data-cy=email-input]").type("user@email.com");
-        cy.get("[data-cy=password-input]").type("password");
-        cy.get("[data-cy=confirm-password-input").type("not_the_same_password");
-        cy.get("[data-cy=btn-signup]").click();
+    beforeEach(() => {
+      cy.intercept("POST", "**api/auth**", {
+        statusCode: 422,
       });
+    });
 
-      it("is expected to return a 422 status code", () => {
-
-      });
+    it("is expected to return an error message if the passwords don't match", () => {
+      cy.get("[data-cy=email-input]").type("user@email.com");
+      cy.get("[data-cy=password-input]").type("password");
+      cy.get("[data-cy=confirm-password-input").type("not_the_same_password");
+      cy.get("[data-cy=btn-signup]").click();
+      cy.get("[data-cy=registration-message").should(
+        "contain.text",
+        "We are sorry! Your request can not be processed at this time. Try again later"
+      );
+    });
+    it('is expected to return an error message if the email is formatted wrong', () => {
+      cy.get("[data-cy=email-input]").type("useremail.com");
+      cy.get("[data-cy=password-input]").type("password");
+      cy.get("[data-cy=confirm-password-input").type("password");
+      cy.get("[data-cy=btn-signup]").click();
+      cy.get("[data-cy=registration-message").should(
+        "contain.text",
+        "We are sorry! Your request can not be processed at this time. Try again later"
+      );
     });
   });
 });

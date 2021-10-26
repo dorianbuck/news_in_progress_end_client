@@ -62,7 +62,7 @@ const Header = () => {
             </Menu.Item>
             <Menu.Item
               id="sign-up"
-              name="Sign Up"
+              name={t("signUp")}
               as={Link}
               to={{ pathname: "/register" }}
               data-cy="sign-up-button"
