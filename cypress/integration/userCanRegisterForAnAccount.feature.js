@@ -29,7 +29,6 @@ describe("User can register for an account", () => {
     });
     it("is expected to clear the input fields after registration", () => {
       cy.get("body").trigger("keydown", { keyCode: 27 });
-      cy.wait(500);
       cy.get("body").trigger("keyup", { keyCode: 27 });
       cy.get("[data-cy=email-input]").should("contain.text", "");
       cy.get("[data-cy=password-input]").should("contain.text", "");
