@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../state/store/configureStore";
+import errorHandler from "./error"
 
 const Authentication = {
   async register(event) {
@@ -22,6 +23,7 @@ const Authentication = {
         }
       });
     } catch (error) {
+      errorHandler(error);
     }
   },
 };
