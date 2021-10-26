@@ -58,7 +58,7 @@ const Header = () => {
                 onChange={(event, data) => {
                   i18n.changeLanguage(data.value);
                 }}
-              ></Select>
+              />
             </Menu.Item>
             <Menu.Item
               id="sign-up"
@@ -66,7 +66,7 @@ const Header = () => {
               as={Link}
               to={{ pathname: "/register" }}
               data-cy="sign-up-button"
-            ></Menu.Item>
+            />
           </>
         )}
       </Menu>
