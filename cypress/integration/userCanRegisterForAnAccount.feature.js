@@ -49,7 +49,7 @@ describe("User can register for an account", () => {
         cy.get("[data-cy=btn-signup]").click();
       });
 
-      it.only("is expected to return a 422 status code", () => {
+      it("is expected to return a 422 status code", () => {
 
       });
     });

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   Container,
   Form,
@@ -10,15 +11,22 @@ import {
 import Authentication from "../modules/authentication";
 
 const RegisterPage = () => {
+  const { error, authenticated } = useSelector((store) => store)
   const [open, setOpen] = useState(false);
 
   const handleSubmit = (event) => {
-    let userIsAuthenticated = Authentication.register(event);
-    userIsAuthenticated && setOpen(true)
+    Authentication.register(event);
     document.getElementById('form-input-control-error-email').value = ""
     document.getElementById('form-input-password').value = ""
     document.getElementById('form-input-confirm-password').value = ""
   };
+
+  useEffect(() => {
+    if (error) { console.log("Yo there's an error")
+    } else if (authenticated) {
+      setOpen(true)
+    }
+  }, [authenticated, error])
 
   return (
     <Container>
