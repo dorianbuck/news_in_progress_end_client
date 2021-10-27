@@ -1,7 +1,7 @@
 import store from "../state/store/configureStore";
 
 const errorHandler = (error) => {
-  if (error.response.status) {
+  if (error?.response?.status) {
     store.dispatch({
       type: "ERROR_MESSAGE",
       payload:

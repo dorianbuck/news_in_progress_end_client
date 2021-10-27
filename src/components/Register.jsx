@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Container,
   Form,
@@ -9,34 +9,60 @@ import {
   Header,
 } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
-import Authentication from "../modules/authentication";
+import auth from "../modules/auth";
+import errorHandler from "../modules/error";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const { error, authenticated, message } = useSelector((store) => store);
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
-  const handleSubmit = (event) => {
-    Authentication.register(event).then(setOpen(true));
-    document.getElementById("form-input-control-error-email").value = "";
-    document.getElementById("form-input-password").value = "";
-    document.getElementById("form-input-confirm-password").value = "";
+  const handleAuthentication = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    setOpen(true);
+    if (password === confirmPassword) {
+      try {
+        await auth.signUp({ name: name, email: email, password: password });
+        const signInStatus = await auth.signIn(email, password);
+        dispatch({
+          type: "SET_CURRENT_USER",
+          payload: signInStatus.data,
+        });
+        event.target.reset();
+      } catch (error) {
+        errorHandler(error);
+      }
+    } else {
+      errorHandler({ message: "Your passwords are not matching. Try again" });
+    }
   };
 
   return (
     <Container>
-      <Form data-cy="register-form" onSubmit={handleSubmit}>
+      <Form data-cy="register-form" onSubmit={handleAuthentication}>
+        <Form.Field
+          name="name"
+          data-cy="name-input"
+          control={Input}
+          label="Name"
+          placeholder="Your name"
+        />
         <Form.Field
           name="email"
           data-cy="email-input"
           control={Input}
           label="Email"
-          id="form-input-control-error-email"
           placeholder="example@email.com"
         />
         <Form.Field
           name="password"
-          id="form-input-password"
           data-cy="password-input"
           control={Input}
           label={t("password")}
@@ -44,7 +70,6 @@ const Register = () => {
         />
         <Form.Field
           name="confirmPassword"
-          id="form-input-confirm-password"
           data-cy="confirm-password-input"
           control={Input}
           label={t("confirmPassword")}
@@ -53,7 +78,6 @@ const Register = () => {
         <Form.Field
           data-cy="btn-signup"
           control={Button}
-          id="form-button-control-public"
           content={t("submit")}
         />
       </Form>
