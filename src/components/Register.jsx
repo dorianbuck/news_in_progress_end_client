@@ -29,7 +29,7 @@ const Register = () => {
     setOpen(true);
     if (password === confirmPassword) {
       try {
-        await auth.signUp({ email: email, password: password });
+        await auth.signUp({ name: name, email: email, password: password });
         const signInStatus = await auth.signIn(email, password);
         dispatch({
           type: "SET_CURRENT_USER",
