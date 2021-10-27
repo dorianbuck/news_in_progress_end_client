@@ -7,8 +7,9 @@ import HomePage from "./components/HomePage";
 import Category from "./components/Category";
 import CategoryHeader from "./components/CategoryHeader";
 import IndividualArticle from "./components/IndividualArticle";
-import i18n from "./i18n";
 import Register from "./components/Register";
+import SignIn from "./components/SignIn"
+import i18n from "./i18n";
 
 const App = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
@@ -30,6 +31,7 @@ const App = () => {
         ></Route>
         <Route exact path={"/category/:category"} component={Category}></Route>
         <Route exact path={"/register"} component={Register}></Route>
+        <Route exact path={"/sign-in"} component={SignIn}></Route>
       </Switch>
       <Footer />
     </BrowserRouter>

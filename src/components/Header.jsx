@@ -61,6 +61,13 @@ const Header = () => {
               />
             </Menu.Item>
             <Menu.Item
+              id="sign-in"
+              name={t("signIn")}
+              as={Link}
+              to={{ pathname: "/sign-in" }}
+              data-cy="sign-in-button"
+            />
+            <Menu.Item
               id="sign-up"
               name={t("signUp")}
               as={Link}
