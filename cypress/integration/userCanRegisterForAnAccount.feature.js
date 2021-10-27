@@ -13,7 +13,7 @@ describe("User can register for an account", () => {
         });
       },
     });
-    
+
     cy.get("[data-cy=sign-up-button]").click();
   });
 
@@ -29,7 +29,6 @@ describe("User can register for an account", () => {
       cy.get("[data-cy=btn-signup]").click();
     });
     it("is expected to display a success message", () => {
-
       cy.get("[data-cy=registration-message]").should(
         "contain",
         "Registration successful"
@@ -61,7 +60,7 @@ describe("User can register for an account", () => {
         "We are sorry! Your request can not be processed at this time. Try again later"
       );
     });
-    it('is expected to return an error message if the email is formatted wrong', () => {
+    it("is expected to return an error message if the email is formatted wrong", () => {
       cy.get("[data-cy=email-input]").type("useremail.com");
       cy.get("[data-cy=password-input]").type("password");
       cy.get("[data-cy=confirm-password-input").type("password");
