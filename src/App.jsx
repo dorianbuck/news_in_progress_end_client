@@ -8,7 +8,7 @@ import Category from "./components/Category";
 import CategoryHeader from "./components/CategoryHeader";
 import IndividualArticle from "./components/IndividualArticle";
 import Register from "./components/Register";
-import SignIn from "./components/SignIn"
+import SignIn from "./components/SignIn";
 import i18n from "./i18n";
 
 const App = () => {
@@ -22,6 +22,7 @@ const App = () => {
     <BrowserRouter>
       <Header />
       {!isTabletOrMobile && <CategoryHeader />}
+
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route

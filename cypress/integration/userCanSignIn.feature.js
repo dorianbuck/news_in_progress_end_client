@@ -31,10 +31,11 @@ describe("User can sign into their account", () => {
       cy.get("[data-cy=password-input]").type("password");
       cy.get("[data-cy=btn-sign-in]").click();
     });
-    it("is expected to display a success message", () => {
+    it("is expected to display a success message and return to home page", () => {
       cy.get("[data-cy=sign-in-toast]").within(() => {
         cy.contains("Sign In Successful");
       });
+      cy.url().should("eq", "http://localhost:3000/");
     });
   });
 });

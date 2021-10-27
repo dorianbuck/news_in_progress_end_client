@@ -8,7 +8,8 @@ import i18n from "../i18n";
 import logo from "../img/logo.png";
 
 const Header = () => {
-  const { categories } = useSelector((state) => state);
+  const { categories, authenticated } = useSelector((state) => state);
+
   const { t } = useTranslation();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
@@ -60,20 +61,26 @@ const Header = () => {
                 }}
               />
             </Menu.Item>
-            <Menu.Item
-              id="sign-in"
-              name={t("signIn")}
-              as={Link}
-              to={{ pathname: "/sign-in" }}
-              data-cy="sign-in-button"
-            />
-            <Menu.Item
-              id="sign-up"
-              name={t("signUp")}
-              as={Link}
-              to={{ pathname: "/register" }}
-              data-cy="sign-up-button"
-            />
+            {authenticated ? (
+              <Menu.Item>Welcome</Menu.Item>
+            ) : (
+              <>
+                <Menu.Item
+                  id="sign-in"
+                  name={t("signIn")}
+                  as={Link}
+                  to={{ pathname: "/sign-in" }}
+                  data-cy="sign-in-button"
+                />
+                <Menu.Item
+                  id="sign-up"
+                  name={t("signUp")}
+                  as={Link}
+                  to={{ pathname: "/register" }}
+                  data-cy="sign-up-button"
+                />
+              </>
+            )}
           </>
         )}
       </Menu>
