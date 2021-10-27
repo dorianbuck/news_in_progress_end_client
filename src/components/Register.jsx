@@ -14,40 +14,50 @@ import errorHandler from "../modules/error";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const { error, authenticated, message, email, password } = useSelector(
-    (store) => store
-  );
+  const { error, authenticated, message } = useSelector((store) => store);
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
-  const handleAuthentication = (event) => {
+  const handleAuthentication = async (event) => {
     event.preventDefault();
-    auth
-      .signUp({ email, password }, "/")
-      .then((response) => {
-        if (response.data.status === "success") {
-          setOpen(true);
-          dispatch({
-            type: "SET_CURRENT_USER",
-            payload: response.data,
-          });
-        }
-      })
-      .catch((error) => {
-        setOpen(true);
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    setOpen(true);
+    if (password === confirmPassword) {
+      try {
+        await auth.signUp({ email: email, password: password });
+        const signInStatus = await auth.signIn(email, password);
+        dispatch({
+          type: "SET_CURRENT_USER",
+          payload: signInStatus.data,
+        });
+        event.target.reset();
+      } catch (error) {
         errorHandler(error);
-      });
+      }
+    } else {
+      errorHandler({ message: "Your passwords are not matching. Try again" });
+    }
   };
 
   return (
     <Container>
       <Form data-cy="register-form" onSubmit={handleAuthentication}>
         <Form.Field
+          name="name"
+          data-cy="name-input"
+          control={Input}
+          label="Name"
+          placeholder="Your name"
+        />
+        <Form.Field
           name="email"
           data-cy="email-input"
           control={Input}
           label="Email"
-          id="form-input-control-error-email"
           placeholder="example@email.com"
         />
         <Form.Field
