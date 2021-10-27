@@ -4,15 +4,23 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import auth from "../modules/auth";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
+import errorHandler from "../modules/error";
 
 const SignIn = () => {
+  const { message, error, authenticated } = useSelector((store) => store);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [redirect, setRedirect] = useState(false);
   const delay = require("delay");
-  const notify = () => toast.success("Sign In Successful");
+  
+  let notify
+  if (!authenticated){
+    notify = () => toast.success(t("signIn"));
+  }else{
+    notify = () => toast.error(message);
+  }
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -20,16 +28,21 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    const signInStatus = auth.signIn(email, password);
-    dispatch({
-      type: "SET_CURRENT_USER",
-      payload: signInStatus.data,
-    });
+    try {
+      const signInStatus = auth.signIn(email, password);
+      debugger;
+      dispatch({
+        type: "SET_CURRENT_USER",
+        payload: signInStatus.data,
+      });
 
-    (async () => {
-      await delay(2000);
-      setRedirect(true)
-    })();
+      (async () => {
+        await delay(2000);
+        setRedirect(true);
+      })();
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   return (

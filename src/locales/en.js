@@ -11,7 +11,8 @@ const en = {
     confirmPassword: "Confirm password",
     submit: "Submit",
     registrationSuccessful: "Registration successful",
-    signUp: "Sign up"
+    signUp: "Sign up",
+    signIn: "Sign In Successful"
   },
 };
 export default en;

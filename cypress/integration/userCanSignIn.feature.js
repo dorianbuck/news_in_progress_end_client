@@ -38,4 +38,18 @@ describe("User can sign into their account", () => {
       cy.url().should("eq", "http://localhost:3000/");
     });
   });
+
+
+  describe('When sign in is unsuccessful', () => {
+    beforeEach(() => {
+      cy.get("[data-cy=email-input]").type("user@email.com");
+      cy.get("[data-cy=password-input]").type("wrongPassword");
+      cy.get("[data-cy=btn-sign-in]").click();
+    });
+    it('it is expected to display a error message', () => {
+      cy.get("[data-cy=sign-in-toast]").within(() => {
+        cy.contains("Incorrect password or username");
+      });
+    });
+  });
 });

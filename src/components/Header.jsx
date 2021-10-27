@@ -9,7 +9,6 @@ import logo from "../img/logo.png";
 
 const Header = () => {
   const { categories, authenticated } = useSelector((state) => state);
-
   const { t } = useTranslation();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 

@@ -22,7 +22,6 @@ const App = () => {
     <BrowserRouter>
       <Header />
       {!isTabletOrMobile && <CategoryHeader />}
-
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route
