@@ -20,9 +20,10 @@ const Register = () => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
-  const handleAuthentication = async () => {
-    await auth
-      .signUp(email, password)
+  const handleAuthentication = (event) => {
+    event.preventDefault();
+    auth
+      .signUp({ email, password }, "/")
       .then((response) => {
         if (response.data.status === "success") {
           setOpen(true);
@@ -40,7 +41,7 @@ const Register = () => {
 
   return (
     <Container>
-      <Form data-cy="register-form">
+      <Form data-cy="register-form" onSubmit={handleAuthentication}>
         <Form.Field
           name="email"
           data-cy="email-input"
@@ -67,7 +68,6 @@ const Register = () => {
           data-cy="btn-signup"
           control={Button}
           content={t("submit")}
-          onClick={() => handleAuthentication()}
         />
       </Form>
       <Modal
