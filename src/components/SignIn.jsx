@@ -16,10 +16,15 @@ const SignIn = () => {
   const delay = require("delay");
   
   let notify
-  if (!authenticated){
+  if (authenticated === true){    
     notify = () => toast.success(t("signIn"));
-  }else{
-    notify = () => toast.error(message);
+  }else{ 
+    debugger
+    notify = () =>  
+    (async () => {
+      await delay(5000);
+      toast.error(message);
+    })();   
   }
 
   const handleSignIn = async (event) => {
@@ -29,19 +34,17 @@ const SignIn = () => {
     const password = form.password.value;
 
     try {
-      const signInStatus = auth.signIn(email, password);
-      debugger;
+      const signInStatus = await auth.signIn(email, password);      
       dispatch({
         type: "SET_CURRENT_USER",
         payload: signInStatus.data,
       });
-
       (async () => {
         await delay(2000);
         setRedirect(true);
       })();
-    } catch (error) {
-      errorHandler(error);
+    } catch (error) {      
+      errorHandler(error);     
     }
   };
 

@@ -39,16 +39,23 @@ describe("User can sign into their account", () => {
     });
   });
 
-
-  describe('When sign in is unsuccessful', () => {
+  describe("When sign in is unsuccessful", () => {
     beforeEach(() => {
+      cy.intercept("POST", "**api/auth/sign_in", {
+        statusCode: 401,
+        fixture: "authenticationFailure.json",
+      });
+      cy.intercept("GET", "**api/auth/validate_token**", {
+        statusCode: 401,
+        fixture: "authenticationFailure.json",
+      });
       cy.get("[data-cy=email-input]").type("user@email.com");
       cy.get("[data-cy=password-input]").type("wrongPassword");
       cy.get("[data-cy=btn-sign-in]").click();
     });
-    it('it is expected to display a error message', () => {
+    it.only("it is expected to display a error message", () => {
       cy.get("[data-cy=sign-in-toast]").within(() => {
-        cy.contains("Incorrect password or username");
+        cy.contains("Invalid login credentials. Please try again.");
       });
     });
   });

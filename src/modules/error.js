@@ -1,7 +1,13 @@
 import store from "../state/store/configureStore";
 
 const errorHandler = (error) => {
-  if (error?.response?.status) {
+  debugger;
+  if (error.response.status === 401) {
+    store.dispatch({
+      type: "ERROR_MESSAGE",
+      paylaod: error.response.data.errors[0],
+    });
+  } else if (error?.response?.status) {
     store.dispatch({
       type: "ERROR_MESSAGE",
       payload:

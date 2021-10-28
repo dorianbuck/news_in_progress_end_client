@@ -6,7 +6,8 @@ const rootReducer = (state, action) => {
         categories: action.payload,
       };
     case "ERROR_MESSAGE":
-      return {
+      debugger
+      return {                
         ...state,
         error: true,
         message: action.payload,
