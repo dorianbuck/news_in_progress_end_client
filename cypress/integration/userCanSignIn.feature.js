@@ -53,8 +53,8 @@ describe("User can sign into their account", () => {
       cy.get("[data-cy=password-input]").type("wrongPassword");
       cy.get("[data-cy=btn-sign-in]").click();
     });
-    
-    it("it is expected to display a error message", () => {
+
+    it.only("it is expected to display a error message", () => {
       cy.get("[data-cy=sign-in-toast]").within(() => {
         cy.contains("Invalid login credentials. Please try again.");
       });

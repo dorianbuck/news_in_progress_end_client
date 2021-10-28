@@ -44,8 +44,28 @@ const Header = () => {
           <Image size="small" src={logo}></Image>
         </Menu.Item>
         {isTabletOrMobile && (
-          <Dropdown item text={t("categories")} data-cy="mobile-category-list">
-            <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
+          <Dropdown item text={t("menu")} data-cy="mobile-menu">
+            <Dropdown.Menu direction="left">
+              <Dropdown
+                text={t("categories")}
+                item
+                data-cy="mobile-category-list"
+              >
+                <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
+              </Dropdown>
+              {authenticated ? (
+                <></>
+              ) : (
+                <>
+                  <Dropdown.Item data-cy="sign-up-button" as={Link} to={{ pathname: "/register" }}>
+                    {t("signUp")}
+                  </Dropdown.Item>
+                  <Dropdown.Item  data-cy="sign-in-button" as={Link} to={{ pathname: "/sign-in" }}>
+                    {t("signIn")}
+                  </Dropdown.Item>
+                </>
+              )}
+            </Dropdown.Menu>
           </Dropdown>
         )}
         {!isTabletOrMobile && (
@@ -91,7 +111,7 @@ const Header = () => {
           onChange={(event, data) => {
             i18n.changeLanguage(data.value);
           }}
-        ></Select>
+        />
       )}
     </div>
   );

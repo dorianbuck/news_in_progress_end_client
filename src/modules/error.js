@@ -1,7 +1,6 @@
 import store from "../state/store/configureStore";
 
 const errorHandler = (error) => {
-  debugger;
   if (error.response.status === 401) {
     store.dispatch({
       type: "ERROR_MESSAGE",
