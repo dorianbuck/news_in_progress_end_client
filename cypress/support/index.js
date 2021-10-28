@@ -1,2 +1,2 @@
 import "./commands";
-require('cypress-dark')
+import "cypress-dark";
