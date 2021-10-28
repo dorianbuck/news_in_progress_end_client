@@ -25,7 +25,7 @@ const SignIn = () => {
         type: "SET_CURRENT_USER",
         payload: signInStatus.data,
       });
-      toast.success(t("signIn"));
+      toast.success(t("signInMessage"));
 
       await delay(2000);
       setRedirect(true);

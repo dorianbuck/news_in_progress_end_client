@@ -8,7 +8,7 @@ import i18n from "../i18n";
 import logo from "../img/logo.png";
 
 const Header = () => {
-  const { categories, authenticated } = useSelector((state) => state);
+  const { categories, authenticated, currentUser } = useSelector((state) => state);
   const { t } = useTranslation();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
@@ -81,7 +81,7 @@ const Header = () => {
               />
             </Menu.Item>
             {authenticated ? (
-              <Menu.Item>Welcome</Menu.Item>
+              <Menu.Item>Welcome {currentUser.email}</Menu.Item>
             ) : (
               <>
                 <Menu.Item

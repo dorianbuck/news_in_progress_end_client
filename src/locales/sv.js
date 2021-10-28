@@ -1,7 +1,10 @@
 const sv = {
   translation: {
     menu: "Meny",
-    languageNames: "English",
+    languageNames: {
+      english: "Engelska",
+      swedish: "Svenska",
+    },
     chooseLanguage: "Välj Språk",
     topStory: "Dagens Toppnyheter",
     password: "Lösenord",

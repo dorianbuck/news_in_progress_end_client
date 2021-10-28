@@ -1,7 +1,10 @@
 const en = {
   translation: {
     menu: "Menu",
-    languageNames: "Svenska",
+    languageNames: {
+      english: "English",
+      swedish: "Swedish",
+    },
     chooseLanguage: "Choose Language",
     topStory: "Todays Top Story",
     password: "Password",
@@ -10,7 +13,9 @@ const en = {
     registrationSuccessful: "Registration successful",
     signUp: "Sign Up",
     signIn: "Sign In",
-    categories: "Categories"
+    categories: "Categories",
+    signInMessage: "Sign In Successful",
+
   },
 };
 export default en;
