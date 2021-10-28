@@ -4,28 +4,14 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import auth from "../modules/auth";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import errorHandler from "../modules/error";
 
 const SignIn = () => {
-  const { message, error, authenticated } = useSelector((store) => store);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [redirect, setRedirect] = useState(false);
   const delay = require("delay");
-  
-  let notify
-  if (authenticated === true){    
-    notify = () => toast.success(t("signIn"));
-  }else{ 
-    debugger
-    notify = () =>  
-    (async () => {
-      await delay(5000);
-      toast.error(message);
-    })();   
-  }
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -34,17 +20,18 @@ const SignIn = () => {
     const password = form.password.value;
 
     try {
-      const signInStatus = await auth.signIn(email, password);      
+      const signInStatus = await auth.signIn(email, password);
       dispatch({
         type: "SET_CURRENT_USER",
         payload: signInStatus.data,
       });
-      (async () => {
-        await delay(2000);
-        setRedirect(true);
-      })();
-    } catch (error) {      
-      errorHandler(error);     
+      toast.success(t("signIn"));
+
+      await delay(2000);
+      setRedirect(true);
+
+    } catch (error) {
+      toast.error(error.response.data.errors[0]);
     }
   };
 
@@ -75,7 +62,6 @@ const SignIn = () => {
               data-cy="btn-sign-in"
               control={Button}
               content={t("submit")}
-              onClick={notify}
             />
           </Form>
           <div data-cy="sign-in-toast">
