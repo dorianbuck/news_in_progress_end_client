@@ -2,6 +2,6 @@
   "baseUrl": "http://localhost:3000",
   "chromeWebSecurity": false,
   "theme": "dark",
-  "viewportWidth": 375,
-  "viewportHeight": 760
+  "viewportWidth": 1000,
+  "viewportHeight": 660
 }
