@@ -29,7 +29,6 @@ const SignIn = () => {
 
       await delay(2000);
       setRedirect(true);
-
     } catch (error) {
       toast.error(error.response.data.errors[0]);
     }
@@ -38,9 +37,7 @@ const SignIn = () => {
   return (
     <>
       {redirect ? (
-        <>
-          <Redirect to="/" />
-        </>
+        <Redirect to="/" />
       ) : (
         <Container>
           <Form data-cy="sign-in-form" onSubmit={handleSignIn}>

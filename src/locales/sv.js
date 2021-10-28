@@ -12,8 +12,9 @@ const sv = {
     submit: "Skicka in",
     registrationSuccessful: "Registrering lyckad",
     signUp: "Registrera",
-    signIn: "",
-    categories: ""
+    signIn: "Logga In",
+    categories: "Sektioner",
+    signInMessage: "Inloggning lyckad",
   },
 };
 export default sv;
