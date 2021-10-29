@@ -1,17 +1,17 @@
 h1 {
   font-size: 3em;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: black;
   text-align: center;
 }
 h3 {
   font-size: 2.5em;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: black;
 }
 
-a{
-  color:black
+a {
+  color: black;
 }
 
 p {
@@ -23,6 +23,17 @@ p {
   text-align: justify;
 }
 
+.ui.menu {
+  background-color: #244467;
+}
+
+#sign-in {
+  color: #ffffff;
+}
+
+#sign-up {
+  color: #ffffff;
+}
 
 footer {
   position: relative;
