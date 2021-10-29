@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { Container, Button, Card } from "semantic-ui-react";
 import { Article } from "../modules/article";
+import { Link } from "react-router-dom";
 
 const IndividualArticle = () => {
   const { article } = useSelector((state) => state);
@@ -28,11 +29,21 @@ const IndividualArticle = () => {
               <li>Full access to our unique, groundbreaking journalism.</li>
               <li>Read and write comments about the articles you love.</li>
             </ul>
-            <Button data-cy="register-button" color="orange">
+            <Button
+              data-cy="register-button"
+              color="orange"
+              as={Link}
+              to={{ pathname: "/register" }}
+            >
               Register Now
             </Button>
             <strong align="center">Already signed up?</strong>
-            <Button data-cy="sign-in-button" color="orange">
+            <Button
+              data-cy="sign-in-button"
+              color="orange"
+              as={Link}
+              to={{ pathname: "/sign-in" }}
+            >
               Sign in
             </Button>
           </Card>
@@ -47,7 +58,12 @@ const IndividualArticle = () => {
             <li>Full access to our unique, groundbreaking journalism.</li>
             <li>Read and write comments about the articles you love.</li>
           </ul>
-          <Button data-cy="subscription-button" color="orange">
+          <Button
+            data-cy="subscription-button"
+            color="orange"
+            as={Link}
+            to={{ pathname: "/subscribe" }}
+          >
             Subscribe Now
           </Button>
         </Card>

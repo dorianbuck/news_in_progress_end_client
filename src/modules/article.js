@@ -4,7 +4,7 @@ import errorHandler from "./error"
 
 const Article = {
   async index(categoryName) {
-    const options = categoryName ? { category_name: categoryName } : {};
+    const options = categoryName ? { category: categoryName } : {};
     try {
       let response = await axios.get("/api/articles/", {
         params: options,
