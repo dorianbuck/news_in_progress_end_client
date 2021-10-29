@@ -1,6 +1,6 @@
 const sv = {
   translation: {
-    categories: "Meny",
+    menu: "Meny",
     languageNames: {
       english: "Engelska",
       swedish: "Svenska",
@@ -11,7 +11,10 @@ const sv = {
     confirmPassword: "Bekräfta lösenord",
     submit: "Skicka in",
     registrationSuccessful: "Registrering lyckad",
-    signUp: "Registrera"
+    signUp: "Registrera",
+    signIn: "Logga In",
+    categories: "Sektioner",
+    signInMessage: "Inloggning lyckad",
   },
 };
 export default sv;

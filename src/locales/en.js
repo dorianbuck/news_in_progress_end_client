@@ -1,6 +1,6 @@
 const en = {
   translation: {
-    categories: "Menu",
+    menu: "Menu",
     languageNames: {
       english: "English",
       swedish: "Swedish",
@@ -11,7 +11,11 @@ const en = {
     confirmPassword: "Confirm password",
     submit: "Submit",
     registrationSuccessful: "Registration successful",
-    signUp: "Sign up"
+    signUp: "Sign Up",
+    signIn: "Sign In",
+    categories: "Categories",
+    signInMessage: "Sign In Successful",
+
   },
 };
 export default en;
