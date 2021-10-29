@@ -28,6 +28,12 @@ const rootReducer = (state, action) => {
         currentUser: action.payload,
         authenticated: true,
       };
+    case "SET_SUBSCRIPTION":
+      return {
+        ...state,
+        currentUser: action.payload,
+        subscribed: true,
+      };
     default:
       return state;
   }
