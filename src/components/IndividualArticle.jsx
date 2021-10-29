@@ -48,7 +48,7 @@ const IndividualArticle = () => {
             </Button>
           </Card>
         </div>
-      ) : !subscribed ? (
+      ) : subscribed ? (
         <Card fluid data-cy="paywall">
           <h2 align="center">
             To read this article please consider subscribing

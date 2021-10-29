@@ -1,6 +1,6 @@
 import axios from "axios";
 import store from "../state/store/configureStore";
-import errorHandler from "./error"
+import errorHandler from "./error";
 
 const Article = {
   async index(categoryName) {
@@ -19,7 +19,9 @@ const Article = {
   },
   async show(articleId) {
     try {
-      const response = await axios.get(`/api/articles/${articleId}`);
+      const response = await axios.get(`/api/articles/${articleId}`, {
+        headers: JSON.parse(localStorage.getItem("J-tockAuth-Storage")),
+      });
       store.dispatch({
         type: "SHOW_ARTICLE",
         payload: response.data.article,
