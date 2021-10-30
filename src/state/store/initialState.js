@@ -5,6 +5,7 @@ const initialState = {
   authenticated: false,
   error: false,
   message: "",
+  subscribed: false,
 };
 
 export default initialState;

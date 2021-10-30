@@ -14,9 +14,13 @@ describe("User can read an article", () => {
     cy.get("[data-cy=article-1]").click();
   });
 
-  it("is expected to display the article", () => {
+  it("is expected to display the article when signed in and subscribed", () => {
     cy.window().its("store").invoke("dispatch", {
       type: "SET_CURRENT_USER",
+      payload: true,
+    });
+    cy.window().its("store").invoke("dispatch", {
+      type: "SET_SUBSCRIPTION",
       payload: true,
     });
     cy.url().should("eq", "http://localhost:3000/articles/1");
@@ -43,10 +47,22 @@ describe("User can read an article", () => {
   });
 
   describe("when the user in not signed in", () => {
-    it("is expected to display a paywall", () => {
-      cy.get("[data-cy=paywall]").within(() => {
+    it("is expected to ask the user to sign in", () => {
+      cy.get("[data-cy=register-wall]").within(() => {
         cy.get("[data-cy=register-button]").should("be.visible");
         cy.get("[data-cy=sign-in-button]").should("be.visible");
+      });
+    });
+  });
+
+  describe('when the user is signed in, but not a subscriber', () => {
+    it('is expected to ask the user to subscribe', () => {
+      cy.window().its("store").invoke("dispatch", {
+        type: "SET_CURRENT_USER",
+        payload: true,
+      });
+      cy.get("[data-cy=paywall]").within(() => {
+        cy.get("[data-cy=subscription-button]").should("be.visible");
       });
     });
   });

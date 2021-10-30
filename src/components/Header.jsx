@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <div>
-      <Menu inverted data-cy="header">
+      <Menu data-cy="header">
         <Menu.Item
           id="home"
           name="home"
@@ -97,6 +97,7 @@ const Header = () => {
                   as={Link}
                   to={{ pathname: "/register" }}
                   data-cy="sign-up-button"
+                  
                 />
               </>
             )}

@@ -15,7 +15,7 @@ const HomePage = () => {
 
   const uniqueCategories = () => {
     let categories = articles.map((article) => {
-      return article.category_name;
+      return article.category.name;
     });
     dispatch({ type: "SET_CATEGORIES", payload: _.uniq(categories) });
   };
