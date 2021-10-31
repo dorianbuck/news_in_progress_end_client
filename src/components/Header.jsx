@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 import logo from "../img/logo.png";
 
+
 const Header = () => {
   const { categories, authenticated, currentUser } = useSelector((state) => state);
   const { t } = useTranslation();
