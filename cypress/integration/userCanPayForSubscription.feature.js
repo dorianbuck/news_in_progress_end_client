@@ -14,6 +14,10 @@ describe("User can pay for subscription", () => {
   });
 
   it("by clicking on the subscribe button in the header", () => {
+    cy.window().its("store").invoke("dispatch", {
+      type: "SET_CURRENT_USER",
+      payload: true,
+    });
     cy.get("[data-cy=subscribe-btn]").click();
     cy.get("[data-cy=subscription-modal]").should("be.visible");
     cy.get("[data-cy=subscription-modal]").within(() => {

@@ -25,11 +25,12 @@ const PaymentModal = (props) => {
         stripeToken: stripeResponse.token.id,
       },
     });
-    debugger;
     toast.success(paymentState.data.message)
    
     // hide the modal
     dispatch({ type: "SHOW_PAYMENT_MODAL", payload: false });
+    dispatch({ type: "SET_SUBSCRIPTION", payload: true });
+
   };
 
   const inputStyle = {

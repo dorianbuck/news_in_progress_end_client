@@ -10,7 +10,7 @@ import PaymentModal from "./PaymentModal";
 import { Elements } from "react-stripe-elements";
 
 const Header = () => {
-  const { categories, authenticated, currentUser } = useSelector(
+  const { categories, authenticated, currentUser, subscribed } = useSelector(
     (state) => state
   );
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Header = () => {
   ];
 
   return (
-    <div>
+    <>
       <Menu data-cy="header">
         <Menu.Item
           id="home"
@@ -49,7 +49,12 @@ const Header = () => {
           <Image size="small" src={logo}></Image>
         </Menu.Item>
         {isTabletOrMobile && (
-          <Dropdown item text={t("menu")} data-cy="mobile-menu">
+          <Dropdown
+            id="header-font"
+            item
+            text={t("menu")}
+            data-cy="mobile-menu"
+          >
             <Dropdown.Menu direction="left">
               <Dropdown
                 text={t("categories")}
@@ -59,7 +64,20 @@ const Header = () => {
                 <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
               </Dropdown>
               {authenticated ? (
-                <></>
+                <Dropdown.Item
+                  id="header-font"
+                  name={t("subscribed")}
+                  as={Button}
+                  data-cy="subscribe-btn"
+                  onClick={() =>
+                    dispatch({
+                      type: "SHOW_PAYMENT_MODAL",
+                      payload: true,
+                    })
+                  }
+                >
+                  {t("subscribed")}
+                </Dropdown.Item>
               ) : (
                 <>
                   <Dropdown.Item
@@ -84,19 +102,6 @@ const Header = () => {
         {!isTabletOrMobile && (
           <>
             <Menu.Item position="right">
-              <Button
-                data-cy="subscribe-btn"
-                onClick={() =>
-                  dispatch({
-                    type: "SHOW_PAYMENT_MODAL",
-                    payload: true,
-                  })
-                }
-              >
-                Subscribe
-              </Button>
-            </Menu.Item>
-            <Menu.Item position="right">
               <Select
                 data-cy="language-selector"
                 placeholder={t("chooseLanguage")}
@@ -107,18 +112,39 @@ const Header = () => {
               />
             </Menu.Item>
             {authenticated ? (
-              <Menu.Item>Welcome {currentUser.email}</Menu.Item>
+              <>
+                <Menu.Item id="header-font">
+                  Welcome {currentUser.name} you are currently{" "}
+                  {!subscribed ? "not" : ""} subscribed
+                </Menu.Item>
+                {subscribed ? (
+                  <></>
+                ) : (
+                  <Menu.Item
+                    id="header-font"
+                    name={t("subscribed")}
+                    as={Button}
+                    data-cy="subscribe-btn"
+                    onClick={() =>
+                      dispatch({
+                        type: "SHOW_PAYMENT_MODAL",
+                        payload: true,
+                      })
+                    }
+                  />
+                )}
+              </>
             ) : (
               <>
                 <Menu.Item
-                  id="sign-in"
+                  id="header-font"
                   name={t("signIn")}
                   as={Link}
                   to={{ pathname: "/sign-in" }}
                   data-cy="sign-in-button"
                 />
                 <Menu.Item
-                  id="sign-up"
+                  id="header-font"
                   name={t("signUp")}
                   as={Link}
                   to={{ pathname: "/register" }}
@@ -139,10 +165,10 @@ const Header = () => {
           }}
         />
       )}
-       <Elements>
+      <Elements>
         <PaymentModal />
       </Elements>
-    </div>
+    </>
   );
 };
 
