@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
-import { Menu, Dropdown, Select, Image } from "semantic-ui-react";
+import { Menu, Dropdown, Select, Image, Button } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 import logo from "../img/logo.png";
-
+import PaymentModal from "./PaymentModal";
+import { Elements } from "react-stripe-elements";
 
 const Header = () => {
-  const { categories, authenticated, currentUser } = useSelector((state) => state);
+  const { categories, authenticated, currentUser } = useSelector(
+    (state) => state
+  );
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
@@ -58,10 +62,18 @@ const Header = () => {
                 <></>
               ) : (
                 <>
-                  <Dropdown.Item data-cy="sign-up-button" as={Link} to={{ pathname: "/register" }}>
+                  <Dropdown.Item
+                    data-cy="sign-up-button"
+                    as={Link}
+                    to={{ pathname: "/register" }}
+                  >
                     {t("signUp")}
                   </Dropdown.Item>
-                  <Dropdown.Item  data-cy="sign-in-button" as={Link} to={{ pathname: "/sign-in" }}>
+                  <Dropdown.Item
+                    data-cy="sign-in-button"
+                    as={Link}
+                    to={{ pathname: "/sign-in" }}
+                  >
                     {t("signIn")}
                   </Dropdown.Item>
                 </>
@@ -71,6 +83,19 @@ const Header = () => {
         )}
         {!isTabletOrMobile && (
           <>
+            <Menu.Item position="right">
+              <Button
+                data-cy="subscribe-btn"
+                onClick={() =>
+                  dispatch({
+                    type: "SHOW_PAYMENT_MODAL",
+                    payload: true,
+                  })
+                }
+              >
+                Subscribe
+              </Button>
+            </Menu.Item>
             <Menu.Item position="right">
               <Select
                 data-cy="language-selector"
@@ -98,7 +123,6 @@ const Header = () => {
                   as={Link}
                   to={{ pathname: "/register" }}
                   data-cy="sign-up-button"
-                  
                 />
               </>
             )}
@@ -115,6 +139,9 @@ const Header = () => {
           }}
         />
       )}
+       <Elements>
+        <PaymentModal />
+      </Elements>
     </div>
   );
 };

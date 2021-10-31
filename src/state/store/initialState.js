@@ -6,6 +6,8 @@ const initialState = {
   error: false,
   message: "",
   subscribed: false,
+  displayPaymentModal: false,
+  flashMessage: { show: false, content: ''}
 };
 
 export default initialState;

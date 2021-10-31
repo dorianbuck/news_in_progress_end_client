@@ -8,6 +8,7 @@ import "./styles/index.css";
 import axios from "axios";
 import "./i18n";
 import { StripeProvider } from "react-stripe-elements";
+import PaymentModal from "./components/PaymentModal";
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   axios.defaults.baseURL = "http://localhost:3000";
@@ -17,10 +18,11 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
 
 window.store = store;
 ReactDOM.render(
-  <StripeProvider apiKey="pk_test_12345">
-    <Provider store={store}>
+  <Provider store={store}>
+    <StripeProvider apiKey="pk_test_12345">
       <App />
-    </Provider>
-  </StripeProvider>,
+      
+    </StripeProvider>
+  </Provider>,
   document.getElementById("root")
 );
