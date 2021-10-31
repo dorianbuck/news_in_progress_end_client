@@ -17,7 +17,7 @@ const IndividualArticle = () => {
   return (
     <Container text data-cy="displayed-article">
       <h3 data-cy="article-title">{article?.title}</h3>
-      <p data-cy="article-authors">By: {article?.authors.name}</p>
+      <p data-cy="article-authors">By: {article?.authors[0].name}</p>
       {!authenticated ? (
         <div>
           <Card fluid data-cy="register-wall">

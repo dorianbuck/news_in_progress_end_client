@@ -12,43 +12,21 @@ import axios from "axios";
 
 const PaymentModal = (props) => {
   const open = useSelector((state) => state.displayPaymentModal);
+  const { currentUser } = useSelector((state) => state);
   const dispatch = useDispatch();
   const submitPayment = async () => {
-    // get the currentUser's email
-    // there is no current user at this time
-    // get the token from Stripe
+  
     const stripeResponse = await props.stripe.createToken();
-    // make the call to API to make the charge and get the status of the charge from API
     const paymentState = await axios.post("/api/subscriptions", {
       params: {
-        email: "thomas@craft.com", // hard-coded email. This will NOT work with the API
+        email: currentUser.email,
         stripeToken: stripeResponse.token.id,
       },
     });
-    toast.success(paymentState.data.message)
-   
-    // hide the modal
+    toast.success(paymentState.data.message);
+
     dispatch({ type: "SHOW_PAYMENT_MODAL", payload: false });
     dispatch({ type: "SET_SUBSCRIPTION", payload: true });
-
-  };
-
-  const inputStyle = {
-    // margin: "0px",
-    // maxWidth: "100%",
-    // flex: "1 0 auto",
-    // outline: "0px",
-    // WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
-    // textAlign: "left",
-    // lineHeight: "1.21429em",
-    // fontFamily: 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif',
-    // padding: "0.678571em 1em",
-    // background: "rgb(255, 255, 255)",
-    // border: "1px solid rgba(34, 36, 38, 0.15)",
-    // color: "rgba(0, 0, 0, 0.87)",
-    // borderRadius: "0.285714rem",
-    // transition: "box-shadow 0.1s ease 0s, border-color 0.1s ease 0s",
-    // boxShadow: "none",
   };
 
   return (
@@ -58,7 +36,7 @@ const PaymentModal = (props) => {
         <Modal.Content>
           <Input data-cy="email" />
           <div data-cy="card-number">
-            <CardNumberElement style={{ base: inputStyle }} />
+            <CardNumberElement />
           </div>
           <div data-cy="card-expiry">
             <CardExpiryElement />
@@ -74,10 +52,15 @@ const PaymentModal = (props) => {
             data-cy="confirm-payment-btn"
             onClick={() => submitPayment()}
           />
-          <Button content="Cancel" labelPosition="right" />
+          <Button content="Cancel" labelPosition="right" onClick={() =>
+                    dispatch({
+                      type: "SHOW_PAYMENT_MODAL",
+                      payload: false,
+                    })
+                  }/>
         </Modal.Actions>
       </Modal>
-      <div data-cy="sign-in-toast">
+      <div data-cy="subscription-toast">
         <ToastContainer
           position="top-center"
           autoClose={2000}
