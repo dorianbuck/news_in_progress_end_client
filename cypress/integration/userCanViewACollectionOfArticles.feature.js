@@ -37,7 +37,7 @@ describe("A collection of articles is displayed in the main page", () => {
         cy.get("[data-cy=lede]").should("contain.text", "TKTK");
         cy.get("[data-cy=authors]").should(
           "contain.text",
-          "bob journalistbobette journalist"
+          "Dave Mathews"
         );
         cy.get("[data-cy=created_at]").should("contain", "2021-10-05");
       });

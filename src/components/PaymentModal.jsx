@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, Input } from "semantic-ui-react";
+import { ToastContainer, toast } from "react-toastify";
 import {
   CardNumberElement,
   CardExpiryElement,
@@ -24,11 +25,9 @@ const PaymentModal = (props) => {
         stripeToken: stripeResponse.token.id,
       },
     });
-    // dispatch message
-    dispatch({
-      type: "SET_MESSAGE",
-      payload: { show: true, content: paymentState.data.message },
-    });
+    debugger;
+    toast.success(paymentState.data.message)
+   
     // hide the modal
     dispatch({ type: "SHOW_PAYMENT_MODAL", payload: false });
   };
@@ -52,30 +51,45 @@ const PaymentModal = (props) => {
   };
 
   return (
-    <Modal data-cy="subscription-modal" open={open}>
-      <Modal.Header>Become a subscriber</Modal.Header>
-      <Modal.Content>
-        <Input data-cy="email" />
-        <div data-cy="card-number">
-          <CardNumberElement style={{ base: inputStyle }} />
-        </div>
-        <div data-cy="card-expiry">
-          <CardExpiryElement />
-        </div>
-        <div data-cy="card-cvc">
-          <CardCvcElement />
-        </div>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button
-          content="Confirm"
-          color="black"
-          data-cy="confirm-payment-btn"
-          onClick={() => submitPayment()}
+    <>
+      <Modal data-cy="subscription-modal" open={open}>
+        <Modal.Header>Become a subscriber</Modal.Header>
+        <Modal.Content>
+          <Input data-cy="email" />
+          <div data-cy="card-number">
+            <CardNumberElement style={{ base: inputStyle }} />
+          </div>
+          <div data-cy="card-expiry">
+            <CardExpiryElement />
+          </div>
+          <div data-cy="card-cvc">
+            <CardCvcElement />
+          </div>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            content="Confirm"
+            color="black"
+            data-cy="confirm-payment-btn"
+            onClick={() => submitPayment()}
+          />
+          <Button content="Cancel" labelPosition="right" />
+        </Modal.Actions>
+      </Modal>
+      <div data-cy="sign-in-toast">
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
-        <Button content="Cancel" labelPosition="right" />
-      </Modal.Actions>
-    </Modal>
+      </div>
+    </>
   );
 };
 

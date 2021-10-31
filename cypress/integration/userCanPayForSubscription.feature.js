@@ -6,7 +6,7 @@ describe("User can pay for subscription", () => {
     });
 
     cy.intercept("POST", "**api/subscription**", {
-      body: { message: "Yay!", paid: true },
+      body: { message: "You have successfully subscribed", paid: true },
       statusCode: 201,
     }).as("subscriptionRequest");
     cy.intercept("POST", "https://r.stripe.com/0", { statusCode: 200 });
@@ -48,6 +48,8 @@ describe("User can pay for subscription", () => {
         .its("response.statusCode")
         .should("eq", 201);
     });
-    cy.get("[data-cy=flash-message]").should("contain.text", "Yay!");
+    cy.get("[data-cy=sign-in-toast]").within(() => {
+      cy.contains("You have successfully subscribed");
+    });;
   });
 });

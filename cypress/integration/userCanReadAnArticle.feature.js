@@ -31,7 +31,7 @@ describe("User can read an article", () => {
       );
       cy.get("[data-cy=article-authors]").should(
         "contain",
-        "Bob Journalist, and Bobette Journalist"
+        "Dave Mathews"
       );
       cy.get("[data-cy=article-date]").should("contain", "2021-10-04");
       cy.get("[data-cy=article-body]").should(
