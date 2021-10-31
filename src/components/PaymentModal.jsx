@@ -15,18 +15,23 @@ const PaymentModal = (props) => {
   const { currentUser } = useSelector((state) => state);
   const dispatch = useDispatch();
   const submitPayment = async () => {
-  
     const stripeResponse = await props.stripe.createToken();
-    const paymentState = await axios.post("/api/subscriptions", {
-      params: {
-        email: currentUser.email,
-        stripeToken: stripeResponse.token.id,
-      },
-    });
-    toast.success(paymentState.data.message);
+    try {
+      const paymentState = await axios.post("/api/subscriptions", {
+        headers: JSON.parse(localStorage.getItem("J-tockAuth-Storage")),
+        params: {
+          email: currentUser.email,
+          stripeToken: stripeResponse.token.id,
+        },
+      });
+      debugger;
+      toast.success(paymentState.data.message);
 
-    dispatch({ type: "SHOW_PAYMENT_MODAL", payload: false });
-    dispatch({ type: "SET_SUBSCRIPTION", payload: true });
+      dispatch({ type: "SHOW_PAYMENT_MODAL", payload: false });
+      dispatch({ type: "SET_SUBSCRIPTION", payload: true });
+    } catch (error) {
+      toast.error(stripeResponse.error?.message || error);
+    }
   };
 
   return (
@@ -52,12 +57,16 @@ const PaymentModal = (props) => {
             data-cy="confirm-payment-btn"
             onClick={() => submitPayment()}
           />
-          <Button content="Cancel" labelPosition="right" onClick={() =>
-                    dispatch({
-                      type: "SHOW_PAYMENT_MODAL",
-                      payload: false,
-                    })
-                  }/>
+          <Button
+            content="Cancel"
+            labelPosition="right"
+            onClick={() =>
+              dispatch({
+                type: "SHOW_PAYMENT_MODAL",
+                payload: false,
+              })
+            }
+          />
         </Modal.Actions>
       </Modal>
       <div data-cy="subscription-toast">

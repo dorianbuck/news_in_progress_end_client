@@ -66,7 +66,6 @@ const Header = () => {
               {authenticated ? (
                 <Dropdown.Item
                   id="header-font"
-                  name={t("subscribed")}
                   as={Button}
                   data-cy="subscribe-btn"
                   onClick={() =>
@@ -76,7 +75,7 @@ const Header = () => {
                     })
                   }
                 >
-                  {t("subscribed")}
+                  Subscribe?
                 </Dropdown.Item>
               ) : (
                 <>

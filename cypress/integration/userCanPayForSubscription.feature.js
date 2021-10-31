@@ -58,9 +58,76 @@ describe("User can pay for subscription", () => {
       cy.get('[data-cy="confirm-payment-btn"]').click();
       cy.wait("@subscriptionRequest")
         .its("response.statusCode")
-        .should("eq", 201);
+        .should("eq", 201, { delay: 10 });
       cy.get("[data-cy=subscription-toast]").within(() => {
-        cy.contains("You have successfully subscribed");
+        cy.contains("You have successfully subscribed", { delay: 10 });
+      });
+    });
+  });
+
+  describe("when the payment is unsuccessful", () => {
+    before(() => {
+      cy.intercept("POST", "**api/subscription**", {
+        body: { message: "Your card number is incomplete", paid: true },
+        statusCode: 403,
+      });
+    });
+
+    it("is expected that entering no card details will lead to an error message", () => {
+      cy.visit("/");
+      cy.window().its("store").invoke("dispatch", {
+        type: "SET_CURRENT_USER",
+        payload: true,
+      });
+      cy.get("[data-cy=subscribe-btn]").click();
+      cy.get('[data-cy="confirm-payment-btn"]').click();
+      /* eslint-disable no-undef */
+      cy.get("[data-cy=subscription-toast]").within(() => {
+        cy.contains("Your card number is incomplete", { delay: 10 });
+      });
+    });
+
+    it('is expected that entering fake card details will lead to an error', () => {
+      cy.visit("/");
+      cy.window().its("store").invoke("dispatch", {
+        type: "SET_CURRENT_USER",
+        payload: true,
+      });
+      cy.get("[data-cy=subscribe-btn]").click();
+      cy.get('[data-cy="confirm-payment-btn"]').click();
+
+      cy.get("[data-cy=subscription-modal]").within(() => {
+        cy.get("[data-cy=email]").type("guy@random.com");
+
+        cy.get("div[data-cy=card-number]").within(() => {
+          cy.get('iframe[name^="__privateStripeFrame"]').then(($iframe) => {
+            const $body = $iframe.contents().find("body");
+            cy.wrap($body)
+              .find('input[name="cardnumber"]')
+              .type("4242424242424242", { delay: 2 });
+          });
+        });
+
+        cy.get("div[data-cy=card-expiry]").within(() => {
+          cy.get('iframe[name^="__privateStripeFrame"]').then(($iframe) => {
+            const $body = $iframe.contents().find("body");
+            cy.wrap($body)
+              .find('input[name="exp-date"]')
+              .type("1222", { delay: 2 });
+          });
+        });
+
+        cy.get("div[data-cy=card-cvc]").within(() => {
+          cy.get('iframe[name^="__privateStripeFrame"]').then(($iframe) => {
+            const $body = $iframe.contents().find("body");
+            cy.wrap($body).find('input[name="cvc"]').type("113", { delay: 10 });
+          });
+        });
+      });
+
+      /* eslint-disable no-undef */
+      cy.get("[data-cy=subscription-toast]").within(() => {
+        cy.contains("Your card number is incomplete", { delay: 10 });
       });
     });
   });
