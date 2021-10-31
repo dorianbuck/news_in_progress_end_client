@@ -17,7 +17,7 @@ describe("User can pay for subscription", () => {
     cy.get("[data-cy=subscribe-btn]").click();
     cy.get("[data-cy=subscription-modal]").should("be.visible");
     cy.get("[data-cy=subscription-modal]").within(() => {
-      cy.get("[data-cy=email]").type("thomas@craft.com");
+      cy.get("[data-cy=email]").type("guy@random.com");
       cy.get("div[data-cy=card-number]").within(() => {
         cy.get('iframe[name^="__privateStripeFrame"]').then(($iframe) => {
           const $body = $iframe.contents().find("body");
