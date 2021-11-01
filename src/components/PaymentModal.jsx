@@ -24,12 +24,13 @@ const PaymentModal = (props) => {
           stripeToken: stripeResponse.token.id,
         },
       });
-      debugger;
+      
       toast.success(paymentState.data.message);
 
       dispatch({ type: "SHOW_PAYMENT_MODAL", payload: false });
       dispatch({ type: "SET_SUBSCRIPTION", payload: true });
     } catch (error) {
+      debugger
       toast.error(stripeResponse.error?.message || error);
     }
   };

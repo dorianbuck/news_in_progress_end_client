@@ -55,7 +55,7 @@ describe("User can pay for subscription", () => {
     });
 
     it("is expected to display a success message upon subscribing", () => {
-      cy.get('[data-cy="confirm-payment-btn"]').click();
+      cy.get("[data-cy=confirm-payment-btn]").click();
       cy.wait("@subscriptionRequest")
         .its("response.statusCode")
         .should("eq", 201, { delay: 10 });
@@ -80,21 +80,21 @@ describe("User can pay for subscription", () => {
         payload: true,
       });
       cy.get("[data-cy=subscribe-btn]").click();
-      cy.get('[data-cy="confirm-payment-btn"]').click();
-      /* eslint-disable no-undef */
+      cy.get("[data-cy=confirm-payment-btn]").click();
+
       cy.get("[data-cy=subscription-toast]").within(() => {
         cy.contains("Your card number is incomplete", { delay: 10 });
       });
     });
 
-    it('is expected that entering fake card details will lead to an error', () => {
+    it("is expected that entering fake card details will lead to an error", () => {
       cy.visit("/");
       cy.window().its("store").invoke("dispatch", {
         type: "SET_CURRENT_USER",
         payload: true,
       });
       cy.get("[data-cy=subscribe-btn]").click();
-      cy.get('[data-cy="confirm-payment-btn"]').click();
+      cy.get("[data-cy=confirm-payment-btn]").click();
 
       cy.get("[data-cy=subscription-modal]").within(() => {
         cy.get("[data-cy=email]").type("guy@random.com");
@@ -125,7 +125,6 @@ describe("User can pay for subscription", () => {
         });
       });
 
-      /* eslint-disable no-undef */
       cy.get("[data-cy=subscription-toast]").within(() => {
         cy.contains("Your card number is incomplete", { delay: 10 });
       });
