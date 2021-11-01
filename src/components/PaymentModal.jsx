@@ -17,14 +17,16 @@ const PaymentModal = (props) => {
 
   const submitPayment = async () => {
     const stripeResponse = await props.stripe.createToken();
+    const params = {
+      email: currentUser.email,
+      stripeToken: stripeResponse.token.id,
+      currency: "sek",
+      amount: 19900
+    };
 
     try {
-      const paymentState = await axios.post("/api/subscriptions", {
+      const paymentState = await axios.post(`/api/subscriptions`, params, {
         headers: JSON.parse(localStorage.getItem("J-tockAuth-Storage")),
-        params: {
-          email: currentUser.email,
-          stripeToken: stripeResponse.token.id,
-        },
       });
 
       toast.success(paymentState.data.message);
