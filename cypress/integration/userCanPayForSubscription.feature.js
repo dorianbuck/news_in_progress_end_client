@@ -66,11 +66,12 @@ describe("User can pay for subscription", () => {
   });
 
   describe("when the payment is unsuccessful", () => {
-    before(() => {
+    beforeEach(() => {
       cy.intercept("POST", "**api/subscription**", {
-        body: { message: "Your card number is incomplete", paid: true },
+        body: { error: "Your card number is incomplete", paid: false },
         statusCode: 403,
       });
+      cy.intercept("POST", "https://r.stripe.com/0", { statusCode: 403 });
     });
 
     it("is expected that entering no card details will lead to an error message", () => {
@@ -80,10 +81,13 @@ describe("User can pay for subscription", () => {
         payload: true,
       });
       cy.get("[data-cy=subscribe-btn]").click();
-      cy.get("[data-cy=confirm-payment-btn]").click();
+      cy.get("[data-cy=subscription-modal]").within(() => {
+        cy.get("[data-cy=email]").type("guy@random.com", { delay: 10 });
+        cy.get("[data-cy=confirm-payment-btn]").click();
+      });
 
       cy.get("[data-cy=subscription-toast]").within(() => {
-        cy.contains("Your card number is incomplete", { delay: 10 });
+        cy.contains("Kortnumret är ofullständigt", { delay: 10 });
       });
     });
 
@@ -94,17 +98,16 @@ describe("User can pay for subscription", () => {
         payload: true,
       });
       cy.get("[data-cy=subscribe-btn]").click();
-      cy.get("[data-cy=confirm-payment-btn]").click();
 
       cy.get("[data-cy=subscription-modal]").within(() => {
-        cy.get("[data-cy=email]").type("guy@random.com");
+        cy.get("[data-cy=email]").type("guy@random.com", { delay: 10 });
 
         cy.get("div[data-cy=card-number]").within(() => {
           cy.get('iframe[name^="__privateStripeFrame"]').then(($iframe) => {
             const $body = $iframe.contents().find("body");
             cy.wrap($body)
               .find('input[name="cardnumber"]')
-              .type("4242424242424242", { delay: 2 });
+              .type("4242424242424211", { delay: 2 });
           });
         });
 
@@ -113,7 +116,7 @@ describe("User can pay for subscription", () => {
             const $body = $iframe.contents().find("body");
             cy.wrap($body)
               .find('input[name="exp-date"]')
-              .type("1222", { delay: 2 });
+              .type("1222", { delay: 10 });
           });
         });
 
@@ -123,10 +126,11 @@ describe("User can pay for subscription", () => {
             cy.wrap($body).find('input[name="cvc"]').type("113", { delay: 10 });
           });
         });
+        cy.get("[data-cy=confirm-payment-btn]").click();
       });
 
       cy.get("[data-cy=subscription-toast]").within(() => {
-        cy.contains("Your card number is incomplete", { delay: 10 });
+        cy.contains("Ditt kortnummer är ogiltigt", { delay: 10 });
       });
     });
   });

@@ -14,8 +14,10 @@ const PaymentModal = (props) => {
   const open = useSelector((state) => state.displayPaymentModal);
   const { currentUser } = useSelector((state) => state);
   const dispatch = useDispatch();
+
   const submitPayment = async () => {
     const stripeResponse = await props.stripe.createToken();
+
     try {
       const paymentState = await axios.post("/api/subscriptions", {
         headers: JSON.parse(localStorage.getItem("J-tockAuth-Storage")),
@@ -24,13 +26,12 @@ const PaymentModal = (props) => {
           stripeToken: stripeResponse.token.id,
         },
       });
-      
+
       toast.success(paymentState.data.message);
 
       dispatch({ type: "SHOW_PAYMENT_MODAL", payload: false });
       dispatch({ type: "SET_SUBSCRIPTION", payload: true });
     } catch (error) {
-      debugger
       toast.error(stripeResponse.error?.message || error);
     }
   };
