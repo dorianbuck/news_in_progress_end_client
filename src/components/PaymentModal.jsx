@@ -9,11 +9,15 @@ import {
   injectStripe,
 } from "react-stripe-elements";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+
 
 const PaymentModal = (props) => {
   const open = useSelector((state) => state.displayPaymentModal);
   const { currentUser } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
 
   const submitPayment = async () => {
     const stripeResponse = await props.stripe.createToken();
@@ -41,7 +45,7 @@ const PaymentModal = (props) => {
   return (
     <>
       <Modal data-cy="subscription-modal" open={open}>
-        <Modal.Header>Become a subscriber</Modal.Header>
+        <Modal.Header>{t("becomeASubscriber")}</Modal.Header>
         <Modal.Content>
           <Input data-cy="email" />
           <div data-cy="card-number">

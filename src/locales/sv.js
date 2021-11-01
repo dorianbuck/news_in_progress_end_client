@@ -15,6 +15,8 @@ const sv = {
     signIn: "Logga In",
     categories: "Sektioner",
     signInMessage: "Inloggning lyckad",
+    subscribed: "Prenumerera nu",
+    becomeASubscriber: "Bli prenumerant för endast 199 kr per år."
   },
 };
 export default sv;

@@ -64,19 +64,25 @@ const Header = () => {
                 <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
               </Dropdown>
               {authenticated ? (
-                <Dropdown.Item
-                  id="header-font"
-                  as={Button}
-                  data-cy="subscribe-btn"
-                  onClick={() =>
-                    dispatch({
-                      type: "SHOW_PAYMENT_MODAL",
-                      payload: true,
-                    })
-                  }
-                >
-                  Subscribe?
-                </Dropdown.Item>
+                <>
+                  {subscribed ? (
+                    <> </>
+                  ) : (
+                    <Dropdown.Item
+                      id="header-font"
+                      as={Button}
+                      data-cy="subscribe-btn"
+                      onClick={() =>
+                        dispatch({
+                          type: "SHOW_PAYMENT_MODAL",
+                          payload: true,
+                        })
+                      }
+                    >
+                      Subscribe?
+                    </Dropdown.Item>
+                  )}
+                </>
               ) : (
                 <>
                   <Dropdown.Item

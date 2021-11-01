@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Card } from "semantic-ui-react";
 import { Article } from "../modules/article";
 import { Link } from "react-router-dom";
@@ -9,6 +9,8 @@ const IndividualArticle = () => {
   const { article } = useSelector((state) => state);
   const { authenticated, subscribed } = useSelector((state) => state);
   const { id } = useParams();
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     Article.show(id);
@@ -61,8 +63,12 @@ const IndividualArticle = () => {
           <Button
             data-cy="subscription-button"
             color="orange"
-            as={Link}
-            to={{ pathname: "/subscribe" }}
+            onClick={() =>
+              dispatch({
+                type: "SHOW_PAYMENT_MODAL",
+                payload: true,
+              })
+            }
           >
             Subscribe Now
           </Button>
