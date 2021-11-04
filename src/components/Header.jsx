@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
-import { Menu, Dropdown, Select, Image } from "semantic-ui-react";
+import { Menu, Dropdown, Select, Image, Button } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 import logo from "../img/logo.png";
+import PaymentModal from "./PaymentModal";
+import { Elements } from "react-stripe-elements";
 
 const Header = () => {
-  const { categories, authenticated, currentUser } = useSelector((state) => state);
+  const { categories, authenticated, currentUser, subscribed } = useSelector(
+    (state) => state
+  );
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
@@ -32,7 +37,7 @@ const Header = () => {
   ];
 
   return (
-    <div>
+    <>
       <Menu data-cy="header">
         <Menu.Item
           id="home"
@@ -44,7 +49,12 @@ const Header = () => {
           <Image size="small" src={logo}></Image>
         </Menu.Item>
         {isTabletOrMobile && (
-          <Dropdown item text={t("menu")} data-cy="mobile-menu">
+          <Dropdown
+            id="header-font"
+            item
+            text={t("menu")}
+            data-cy="mobile-menu"
+          >
             <Dropdown.Menu direction="left">
               <Dropdown
                 text={t("categories")}
@@ -54,13 +64,39 @@ const Header = () => {
                 <Dropdown.Menu>{categoriesList}</Dropdown.Menu>
               </Dropdown>
               {authenticated ? (
-                <></>
+                <>
+                  {subscribed ? (
+                    <> </>
+                  ) : (
+                    <Dropdown.Item
+                      id="header-font"
+                      as={Button}
+                      data-cy="subscribe-btn"
+                      onClick={() =>
+                        dispatch({
+                          type: "SHOW_PAYMENT_MODAL",
+                          payload: true,
+                        })
+                      }
+                    >
+                      Subscribe?
+                    </Dropdown.Item>
+                  )}
+                </>
               ) : (
                 <>
-                  <Dropdown.Item data-cy="sign-up-button" as={Link} to={{ pathname: "/register" }}>
+                  <Dropdown.Item
+                    data-cy="sign-up-button"
+                    as={Link}
+                    to={{ pathname: "/register" }}
+                  >
                     {t("signUp")}
                   </Dropdown.Item>
-                  <Dropdown.Item  data-cy="sign-in-button" as={Link} to={{ pathname: "/sign-in" }}>
+                  <Dropdown.Item
+                    data-cy="sign-in-button"
+                    as={Link}
+                    to={{ pathname: "/sign-in" }}
+                  >
                     {t("signIn")}
                   </Dropdown.Item>
                 </>
@@ -81,23 +117,43 @@ const Header = () => {
               />
             </Menu.Item>
             {authenticated ? (
-              <Menu.Item>Welcome {currentUser.email}</Menu.Item>
+              <>
+                <Menu.Item id="header-font">
+                  Welcome {currentUser.name} you are currently{" "}
+                  {!subscribed ? "not" : ""} subscribed
+                </Menu.Item>
+                {subscribed ? (
+                  <></>
+                ) : (
+                  <Menu.Item
+                    id="header-font"
+                    name={t("subscribed")}
+                    as={Button}
+                    data-cy="subscribe-btn"
+                    onClick={() =>
+                      dispatch({
+                        type: "SHOW_PAYMENT_MODAL",
+                        payload: true,
+                      })
+                    }
+                  />
+                )}
+              </>
             ) : (
               <>
                 <Menu.Item
-                  id="sign-in"
+                  id="header-font"
                   name={t("signIn")}
                   as={Link}
                   to={{ pathname: "/sign-in" }}
                   data-cy="sign-in-button"
                 />
                 <Menu.Item
-                  id="sign-up"
+                  id="header-font"
                   name={t("signUp")}
                   as={Link}
                   to={{ pathname: "/register" }}
                   data-cy="sign-up-button"
-                  
                 />
               </>
             )}
@@ -114,7 +170,10 @@ const Header = () => {
           }}
         />
       )}
-    </div>
+      <Elements>
+        <PaymentModal />
+      </Elements>
+    </>
   );
 };
 

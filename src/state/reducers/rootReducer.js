@@ -1,5 +1,10 @@
 const rootReducer = (state, action) => {
   switch (action.type) {
+    case "SHOW_PAYMENT_MODAL":
+      return {
+        ...state,
+        displayPaymentModal: action.payload,
+      };
     case "SET_CATEGORIES":
       return {
         ...state,
@@ -10,6 +15,11 @@ const rootReducer = (state, action) => {
         ...state,
         error: true,
         message: action.payload,
+      };
+    case "SET_MESSAGE":
+      return {
+        ...state,
+        flashMessage: action.payload,
       };
     case "SET_ARTICLES_INDEX":
       return {

@@ -17,6 +17,7 @@ const Register = () => {
   const { error, authenticated, message } = useSelector((store) => store);
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  
 
   const handleAuthentication = async (event) => {
     event.preventDefault();

@@ -15,7 +15,8 @@ const en = {
     signIn: "Sign In",
     categories: "Categories",
     signInMessage: "Sign In Successful",
-
+    subscribed: "Subscribe Now",
+    becomeASubscriber: "Become a subscriber for only 199 kr per annum.",
   },
 };
 export default en;

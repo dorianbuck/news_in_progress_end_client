@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Card } from "semantic-ui-react";
 import { Article } from "../modules/article";
 import { Link } from "react-router-dom";
@@ -9,6 +9,8 @@ const IndividualArticle = () => {
   const { article } = useSelector((state) => state);
   const { authenticated, subscribed } = useSelector((state) => state);
   const { id } = useParams();
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     Article.show(id);
@@ -17,7 +19,7 @@ const IndividualArticle = () => {
   return (
     <Container text data-cy="displayed-article">
       <h3 data-cy="article-title">{article?.title}</h3>
-      <p data-cy="article-authors">By: {article?.authors}</p>
+      <p data-cy="article-authors">By: {article?.authors[0].name}</p>
       {!authenticated ? (
         <div>
           <Card fluid data-cy="register-wall">
@@ -48,7 +50,7 @@ const IndividualArticle = () => {
             </Button>
           </Card>
         </div>
-      ) : subscribed ? (
+      ) : !subscribed ? (
         <Card fluid data-cy="paywall">
           <h2 align="center">
             To read this article please consider subscribing
@@ -61,8 +63,12 @@ const IndividualArticle = () => {
           <Button
             data-cy="subscription-button"
             color="orange"
-            as={Link}
-            to={{ pathname: "/subscribe" }}
+            onClick={() =>
+              dispatch({
+                type: "SHOW_PAYMENT_MODAL",
+                payload: true,
+              })
+            }
           >
             Subscribe Now
           </Button>

@@ -13,7 +13,7 @@ const ArticleItem = ({ articleItem }) => {
       >
         <h3 data-cy="title"> {articleItem.title}</h3>
         <div data-cy="lede">{articleItem.lede}</div>
-        <div data-cy="authors">{articleItem.authors}</div>
+        <div data-cy="authors">{articleItem.authors[0].name}</div>
         <div data-cy="created_at">{articleItem.created_at}</div>
         <div data-cy="updated_at">{articleItem.updated_at}</div>
       </Segment>
