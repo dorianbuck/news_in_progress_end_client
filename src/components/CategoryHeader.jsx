@@ -8,16 +8,16 @@ const CategoryHeader = () => {
   const [activeItem, setActiveItem] = useState("business");
 
   let categoriesList = categories.map((category, index) => {
-    let categoryToLowerCase = category.toLowerCase();
+    
     return (
       <Menu.Item
-        data-cy={`${categoryToLowerCase}-category`}
-        name={categoryToLowerCase}
+        data-cy={`${category}-category`}
+        name={category}
         as={Link}
-        to={{ pathname: `/category/${categoryToLowerCase}` }}
+        to={{ pathname: `/category/${category}` }}
         key={index}
-        active={activeItem === categoryToLowerCase}
-        onClick={() => setActiveItem(categoryToLowerCase)}
+        active={activeItem === category}
+        onClick={() => setActiveItem(category)}
       >
         {category}
       </Menu.Item>

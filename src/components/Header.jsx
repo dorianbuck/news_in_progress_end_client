@@ -18,12 +18,12 @@ const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
   let categoriesList = categories.map((category, index) => {
-    let categoryToLowerCase = category.toLowerCase();
+    
     return (
       <Dropdown.Item
-        data-cy={`${categoryToLowerCase}-category`}
+        data-cy={`${category}-category`}
         as={Link}
-        to={{ pathname: `/category/${categoryToLowerCase}` }}
+        to={{ pathname: `/category/${category}` }}
         key={index}
       >
         {category}
